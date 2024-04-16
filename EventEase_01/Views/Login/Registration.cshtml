@@ -1,0 +1,140 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@* @{
+    @model EventEase_01.Models.RegistrationModel
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Registration</title>
+    </head>
+    <body>
+        <h2>Registration</h2>
+        <form asp-controller="Login" asp-action="Register" method="post">
+        
+            <div>
+                <label>First Name:</label>
+                <input type="text" asp-for="UserName" />
+            </div>
+           
+            <div>
+                <label>Email:</label>
+                <input type="email" asp-for="Email" />
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="password" asp-for="Password" />
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </body>
+    </html>
+
+}
+ *@
+@model EventEase_01.Models.RegistrationModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <style>
+      
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <h2>Registration</h2>
+    <form asp-controller="Login" asp-action="Registration" method="post" onsubmit="return validatePassword()">
+        <div>
+            <label>User Name </label>
+            <input type="text" asp-for="UserName" />
+        </div>
+        
+        <div>
+            <label>Email:</label>
+            <input type="email" asp-for="Email" />
+        </div>
+       
+        <div>
+            <label>Password:</label>
+            <input type="password" id="password" asp-for="Password" />
+            <span id="passwordError" style="color: red;"></span>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var passwordError = document.getElementById("passwordError");
+            var regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+
+            if (!regex.test(password)) {
+                passwordError.textContent = "Password must be at least 8 characters long and contain at least one uppercase letter, one numeric digit, and one special character.";
+                return false;
+            } else {
+                passwordError.textContent = "";
+                return true;
+            }
+        }
+    </script>
+</body>
+
+</html>
