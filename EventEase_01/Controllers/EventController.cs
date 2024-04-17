@@ -2,7 +2,7 @@
 
 namespace EventEase_01.Controllers
 {
-    public class landingPageController:Controller
+    public class EventController:Controller
     {
         
 

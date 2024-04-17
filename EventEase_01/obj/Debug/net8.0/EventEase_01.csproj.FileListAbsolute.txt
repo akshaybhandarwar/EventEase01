@@ -256,3 +256,4 @@ C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\r
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\obj\Debug\net8.0\EventEase_01.sourcelink.json

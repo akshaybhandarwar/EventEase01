@@ -33,8 +33,24 @@
       "PackagePath": "staticwebassets\\images\\Event5.jpg"
     },
     {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\bg-proj.png",
+      "PackagePath": "staticwebassets\\images\\bg-proj.png"
+    },
+    {
       "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\bg.png",
       "PackagePath": "staticwebassets\\images\\bg.png"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\landingPageBg.png",
+      "PackagePath": "staticwebassets\\images\\landingPageBg.png"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\reg-bg.jpg",
+      "PackagePath": "staticwebassets\\images\\reg-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\reg.jpg",
+      "PackagePath": "staticwebassets\\images\\reg.jpg"
     },
     {
       "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\js\\site.js",
