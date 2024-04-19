@@ -4,6 +4,8 @@ using EventEase_01.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 
+
+
 namespace EventEase_01.Controllers
 {
     public class UserController : Controller
@@ -11,17 +13,48 @@ namespace EventEase_01.Controllers
         private readonly EventEase01Context _context;
         private readonly IConfiguration _config;
         private readonly AESEncryption _encryptionService;
+        private readonly UserRegistrations _registrationService;
 
-        public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice)
+
+        public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice,UserRegistrations registrationService)
         {
             _config = config;
             _context = context;
             _encryptionService = encryptionservice;
+            _registrationService = registrationService;
+          
         }
         public IActionResult Login()
         {
             return View();
         }
+        //[HttpPost]
+        //public IActionResult Login(loginModel login)
+        //{
+        //    var myUser = _context.Users.Where(x => x.UserEmail == login.Email).FirstOrDefault();
+        //    if (myUser != null)
+        //    {
+        //        HttpContext.Session.SetString("UserSession", myUser.UserEmail);
+        //        string key = _config["PasswordKey"];
+        //        string iv;
+        //        string encryptedPassword = _encryptionService.AuthEncrypt(login.Password, myUser.PasswordSalt, key);
+        //        Console.WriteLine(encryptedPassword);
+        //        Console.WriteLine(myUser.PasswordHash);
+        //        if (encryptedPassword == myUser.PasswordHash)
+        //        {
+        //            HttpContext.Session.SetString("UserSession", myUser.UserEmail);
+        //            return RedirectToAction("Dashboard");
+        //        }
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        ViewBag.Message = "Login Failed";
+        //    }
+        //    return View();
+        //}
+
+
 
         [HttpPost]
         public IActionResult Login(loginModel login)
@@ -29,20 +62,30 @@ namespace EventEase_01.Controllers
             var myUser = _context.Users.Where(x => x.UserEmail == login.Email).FirstOrDefault();
             if (myUser != null)
             {
-                HttpContext.Session.SetString("UserSession", myUser.UserEmail);
-                string iv;
-                string encryptedPassword = _encryptionService.AuthEncrypt(login.Password, myUser.PasswordSalt, myUser.PasswordHash);
-
-                if (encryptedPassword == myUser.PasswordHash)
+                if (myUser.UserRole == "User" || myUser.UserRole ==null)
                 {
                     HttpContext.Session.SetString("UserSession", myUser.UserEmail);
-                    return RedirectToAction("Dashboard");
+                    string key = _config["PasswordKey"];
+                    string iv;
+                    string encryptedPassword = _encryptionService.AuthEncrypt(login.Password, myUser.PasswordSalt, key);
+
+                    if (encryptedPassword == myUser.PasswordHash)
+                    {
+                        HttpContext.Session.SetString("UserSession", myUser.UserEmail);
+                        return RedirectToAction("Dashboard");
+                    }
+                  
                 }
-                return RedirectToAction("Dashboard");
-            }
-            else
-            {
-                ViewBag.Message = "Login Failed";
+                else if (myUser.UserRole == "admin")
+                {
+                    HttpContext.Session.SetString("UserSession", myUser.UserEmail);
+                    string key = _config["PasswordKey"];
+                    string encryptedPassword = _encryptionService.AuthEncrypt(login.Password, myUser.PasswordSalt, key);
+                    if (encryptedPassword == myUser.PasswordHash)
+                    {
+                        return View("AdminDashboard");
+                    }
+                }
             }
             return View();
         }
@@ -50,32 +93,51 @@ namespace EventEase_01.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Registration(RegistrationModel model)
         {
             if (!ModelState.IsValid)
             {
-                Console.WriteLine("Model isnt Valid");
+                return View(model);
             }
-            else
+            var userRegistrations = new UserRegistrations(_context, _config, _encryptionService);
+            var result = await userRegistrations.RegisterUserAsync(model);
+            if (result)
             {
-                string PassKey = _config["PasswordKey"];
-                string PasswordSalt = null;
-                var PasswordHash = _encryptionService.Encrypt(model.Password, out PasswordSalt, PassKey);
-                User u1 = new User
-                {
-                    UserName = model.UserName,
-                    UserEmail = model.Email,
-                    PasswordHash = PasswordHash,
-                    PasswordSalt = PasswordSalt,
-                };
-                await _context.Users.AddAsync(u1);
-                await _context.SaveChangesAsync();
-                ViewBag.SuccessMessage = "Registration successful! Please log in.";
+
+                TempData["SuccessMessage"] = "Registration successful! Please log in.";
                 return RedirectToAction("Login");
             }
             return View(model);
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Registration(RegistrationModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        Console.WriteLine("Model isnt Valid");
+        //    }
+        //    else
+        //    {
+        //        string PassKey = _config["PasswordKey"];
+        //        string PasswordSalt = null;
+        //        var PasswordHash = _encryptionService.Encrypt(model.Password, out PasswordSalt, PassKey);
+        //        User u1 = new User
+        //        {
+        //            UserName = model.UserName,
+        //            UserEmail = model.Email,
+        //            PasswordHash = PasswordHash,
+        //            PasswordSalt = PasswordSalt,
+        //        };
+        //        await _context.Users.AddAsync(u1);
+        //        await _context.SaveChangesAsync();
+        //        ViewBag.SuccessMessage = "Registration successful! Please log in.";
+        //        return RedirectToAction("Login");
+        //    }
+        //    return View(model);
+        //}
         public IActionResult Dashboard()
         {
             if (HttpContext.Session.GetString("UserSession") != null)

@@ -1,0 +1,39 @@
+﻿@model EventEase_01.Models.Event
+
+@{
+    ViewData["Title"] = "AdminDashboard";
+}
+
+<h1>Admin Dashboard</h1>
+
+<h4></h4>
+@if (TempData["EventAddedMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["EventAddedMessage"]
+    </div>
+}
+<hr />
+@* <div class="row">
+    <div class="col-md-4">
+       <form asp-action="AdminDashboard">
+            <div class="form-group">
+                <input type="submit" value="Add A New Event "class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div> *@
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Event" asp-action="AddEvents">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add A New Event</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

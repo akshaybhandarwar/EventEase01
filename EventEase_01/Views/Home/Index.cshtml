@@ -9,20 +9,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventEase - Events</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+        /* Reset default margin and padding */
+        body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
         }
-        .container {
+
+        /* Navbar styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333; /* Example background color */
+            color: #fff; /* Example text color */
+            padding: 10px;
+            box-sizing: border-box;
+            z-index: 1000; /* Ensure navbar appears on top */
+        }
+
+        /* Make the image full-screen, sticking to both left and right sides */
+        img {
+            width: 100vw; /* Set width to 100% of viewport width */
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the entire container without stretching */
+            position: fixed; /* Position the image relative to the viewport */
+            top: 0;
+            left: 0;
+            right: 0; /* Stick the image to both left and right sides */
+        }
+
+        /* Content area styles */
+        .content {
+            padding-top: 60px; /* Adjust to match the height of the navbar */
+        }
+    </style>
+@*     <style>
+        body,html{
+            
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+     /*    img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the entire container without stretching */
+            position: fixed; /* Position the image relative to the viewport */
+            top: 0;
+            left: 0;
+        } */
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the entire container without stretching */
+            position: fixed; /* Position the image relative to the viewport */
+            top: 0;
+            left: 0;
+            /* Move the image behind the navbar */
+        }
+
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333; /* Example background color */
+            color: #fff; /* Example text color */
+            padding: 10px;
+            box-sizing: border-box;
+            z-index: 1000; /* Ensure navbar appears on top */
+        }
+      /*   .container {
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 15px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-        }
+        } */
         .event {
             width: calc(50% - 10px);
             margin-bottom: 20px;
@@ -75,14 +145,15 @@
             cursor: pointer;
         }
         }
-    </style>
+    </style> *@
 </head>
 <body>
     <div class="search-container">
         <input type="text" class="search-input" placeholder="Search For An Event ...">
         <button class="search-button">Search </button>
     </div>
-    <div class="container">
+    <img src="@Url.Content("~/images/landingPageBg.png")" alt="Event 1" >
+    @* <div class="container">
         <div class="event">
             <img src="@Url.Content("~/images/Event1.jpg")" alt="Event 1" width="300" height="200">
             <div class="content">
@@ -124,7 +195,7 @@
                 <h2>Event 6</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-        </div>
+        </div> *@
     </div>
 </body>
 </html>

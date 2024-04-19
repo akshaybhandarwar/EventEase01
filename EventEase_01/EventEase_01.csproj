@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +25,7 @@
   <ItemGroup>
     <Folder Include="NewFolder1\" />
     <Folder Include="NewFolder\" />
+    <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\NewFolder\" />
   </ItemGroup>
 

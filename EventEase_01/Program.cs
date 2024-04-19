@@ -20,6 +20,7 @@ namespace EventEase_01
             var config = provider.GetService<IConfiguration>();
             builder.Services.AddDbContext<EventEase01Context>(item => item.UseSqlServer(config.GetConnectionString("dbcs")));
             builder.Services.AddSingleton<AESEncryption>(provider => new AESEncryption(config["PasswordKey"]));
+            builder.Services.AddScoped<UserRegistrations>();
             var app = builder.Build();
 
 
@@ -39,9 +40,18 @@ namespace EventEase_01
 
             app.UseAuthorization();
 
+
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+            //app.MapControllerRoute(
+            //name: "default",
+            //pattern: "{controller}/{action}/{id?}",
+            //defaults: new { controller = "UserController", action = "Login" });
+
 
             app.Run();
         }

@@ -11,7 +11,7 @@ public partial class Event
 
     public string? EventDescription { get; set; }
 
-    public DateOnly? EventDate { get; set; }
+    public DateTime? EventDate { get; set; }
 
     public Guid? VenueId { get; set; }
 
