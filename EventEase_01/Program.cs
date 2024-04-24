@@ -10,8 +10,6 @@ namespace EventEase_01
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
             
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession();
@@ -21,15 +19,14 @@ namespace EventEase_01
             builder.Services.AddDbContext<EventEase01Context>(item => item.UseSqlServer(config.GetConnectionString("dbcs")));
             builder.Services.AddSingleton<AESEncryption>(provider => new AESEncryption(config["PasswordKey"]));
             builder.Services.AddScoped<UserRegistrations>();
+
             var app = builder.Build();
 
 
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseSession();
@@ -40,12 +37,26 @@ namespace EventEase_01
 
             app.UseAuthorization();
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "default",
+                  pattern: "{controller=Home}/{action=Index}/{id?}"
+              );
+
+                endpoints.MapControllerRoute(
+                    name: "Venues",
+                    pattern: "{controller=Venues}/{action=Create}/{fromButton?}/{id?}",
+                    defaults: new { controller = "Venues", action = "Create" }
+                );
+              
+
+            });
 
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            //app.MapControllerRoute(
+            //    name: "default",
+            //    pattern: "{controller=Home}/{action=Index}/{id?}");
 
             //app.MapControllerRoute(
             //name: "default",

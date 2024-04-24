@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\event\\adminaddevents.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\event\\adminaddevents.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\event\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\event\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\user\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -19,8 +15,40 @@
       "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\event\\showevents.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\event\\showevents.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\eventmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\eventmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\event\\adminaddevents.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\event\\adminaddevents.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\venuemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\venuemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\eventease01context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\eventease01context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\event\\getevent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\event\\getevent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\controllers\\venuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\controllers\\venuescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,20 +59,36 @@
       "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\services\\userregistrations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\user\\registration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\user\\registration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\eventmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\eventmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\eventease_01.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\eventease_01.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\eventease_01.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\eventease_01.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\venues\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\venues\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\registrationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,24 +99,20 @@
       "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\user\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\services\\aesencryption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\services\\aesencryption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\eventease01context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\models\\eventease01context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,14 +130,6 @@
       "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|c:\\users\\coditas-admin\\source\\repos\\eventease_01\\eventease_01\\eventease_01.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{101E2117-B79E-4DBF-8A8C-6D0B4677B832}|EventEase_01\\EventEase_01.csproj|solutionrelative:eventease_01\\eventease_01.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Coditas-Admin\\AppData\\Roaming\\Microsoft\\UserSecrets\\b5490969-ddc4-40f1-a6f6-79da04dde47b\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
@@ -112,167 +144,296 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EventController.cs",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\EventController.cs",
-              "RelativeDocumentMoniker": "EventEase_01\\Controllers\\EventController.cs",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\EventController.cs",
-              "RelativeToolTip": "EventEase_01\\Controllers\\EventController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T08:49:16.508Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AdminDashboard.cshtml",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\AdminDashboard.cshtml",
-              "RelativeDocumentMoniker": "EventEase_01\\Views\\User\\AdminDashboard.cshtml",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\AdminDashboard.cshtml",
-              "RelativeToolTip": "EventEase_01\\Views\\User\\AdminDashboard.cshtml",
-              "ViewState": "AQIAAAYAAAAAZmZmZmYkwBsAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-19T04:58:48.273Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Login.cshtml",
-              "RelativeDocumentMoniker": "EventEase_01\\Views\\User\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Login.cshtml",
-              "RelativeToolTip": "EventEase_01\\Views\\User\\Login.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEQAAAAWAAAA",
+              "Title": "ShowEvents.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\ShowEvents.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\Event\\ShowEvents.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\ShowEvents.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\Event\\ShowEvents.cshtml",
+              "ViewState": "AQIAACQAAAAAMzMzMzMrwCkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-12T08:39:53.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "EventEase_01\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "EventEase_01\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAYAAAAgZWZmZmYkwBgAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T07:07:30.771Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminAddEvents.cshtml",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\AdminAddEvents.cshtml",
-              "RelativeDocumentMoniker": "EventEase_01\\Views\\Event\\AdminAddEvents.cshtml",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\AdminAddEvents.cshtml",
-              "RelativeToolTip": "EventEase_01\\Views\\Event\\AdminAddEvents.cshtml",
-              "ViewState": "AQIAAAYAAACAMTMzMzMbwAoAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-19T04:54:13.82Z",
+              "WhenOpened": "2024-04-22T06:15:16.655Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "EventController.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\EventController.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Controllers\\EventController.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\EventController.cs",
+              "RelativeToolTip": "EventEase_01\\Controllers\\EventController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T08:32:14.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "EventEase_01\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\UserController.cs",
               "RelativeToolTip": "EventEase_01\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAEEAAAAAj5mZmRknwFQAAAAVAAAA",
+              "ViewState": "AQIAAH4AAABAMDMzM3MswFgAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T07:20:21.219Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Registration.cshtml",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Registration.cshtml",
-              "RelativeDocumentMoniker": "EventEase_01\\Views\\User\\Registration.cshtml",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Registration.cshtml",
-              "RelativeToolTip": "EventEase_01\\Views\\User\\Registration.cshtml",
-              "ViewState": "AQIAAEAAAAAAKjMzMzPrv14AAAADAAAA",
+              "DocumentIndex": 0,
+              "Title": "AdminDashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\AdminDashboard.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\Event\\AdminDashboard.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\AdminDashboard.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\Event\\AdminDashboard.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAABAPRQAAABXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-12T09:02:53.229Z",
+              "WhenOpened": "2024-04-22T04:43:24.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminDashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\AdminDashboard.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\User\\AdminDashboard.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\AdminDashboard.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\User\\AdminDashboard.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-19T04:58:48.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "VenueModel.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\VenueModel.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Models\\VenueModel.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\VenueModel.cs",
+              "RelativeToolTip": "EventEase_01\\Models\\VenueModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T08:26:04.099Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "UserRegistrations.cs",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Services\\UserRegistrations.cs",
-              "RelativeDocumentMoniker": "EventEase_01\\Services\\UserRegistrations.cs",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Services\\UserRegistrations.cs",
-              "RelativeToolTip": "EventEase_01\\Services\\UserRegistrations.cs",
-              "ViewState": "AQIAABAAAABAy8zMzMwmwCAAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T05:15:47.847Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "loginModel.cs",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\loginModel.cs",
-              "RelativeDocumentMoniker": "EventEase_01\\Models\\loginModel.cs",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\loginModel.cs",
-              "RelativeToolTip": "EventEase_01\\Models\\loginModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T07:17:31.117Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "EventModel.cs",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\EventModel.cs",
-              "RelativeDocumentMoniker": "EventEase_01\\Models\\EventModel.cs",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\EventModel.cs",
-              "RelativeToolTip": "EventEase_01\\Models\\EventModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T08:06:13.493Z",
+              "Title": "AdminAddEvents.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\AdminAddEvents.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\Event\\AdminAddEvents.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\AdminAddEvents.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\Event\\AdminAddEvents.cshtml",
+              "ViewState": "AQIAAD8AAAAAAAAAAICBPVYAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-19T04:54:13.82Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "EventEase01Context.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\EventEase01Context.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Models\\EventEase01Context.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\EventEase01Context.cs",
+              "RelativeToolTip": "EventEase_01\\Models\\EventEase01Context.cs",
+              "ViewState": "AQIAAAQAAACANTMzMzMbwBcAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-12T06:44:22.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Event.cs",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\Event.cs",
               "RelativeDocumentMoniker": "EventEase_01\\Models\\Event.cs",
               "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\Event.cs",
               "RelativeToolTip": "EventEase_01\\Models\\Event.cs",
-              "ViewState": "AQIAAAMAAACAMjMzMzMbwAsAAAAxAAAA",
+              "ViewState": "AQIAAAUAAADIMjMzMzMbwBMAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-19T08:10:37.33Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "RegistrationModel.cs",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\RegistrationModel.cs",
-              "RelativeDocumentMoniker": "EventEase_01\\Models\\RegistrationModel.cs",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\RegistrationModel.cs",
-              "RelativeToolTip": "EventEase_01\\Models\\RegistrationModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "DocumentIndex": 5,
+              "Title": "EventModel.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\EventModel.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Models\\EventModel.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\EventModel.cs",
+              "RelativeToolTip": "EventEase_01\\Models\\EventModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T08:59:44.635Z",
+              "WhenOpened": "2024-04-19T08:06:13.493Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GetEvent.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\GetEvent.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\Event\\GetEvent.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Event\\GetEvent.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\Event\\GetEvent.cshtml",
+              "ViewState": "AQIAAAYAAAAgLjMzMzMLwAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-23T08:06:20.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "VenuesController.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\VenuesController.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Controllers\\VenuesController.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\VenuesController.cs",
+              "RelativeToolTip": "EventEase_01\\Controllers\\VenuesController.cs",
+              "ViewState": "AQIAAHcAAADAMTMzM7MbwKMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T07:35:24.318Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "EventEase_01\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAoAAACA+/////8PwBgAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-12T07:07:30.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserRegistrations.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Services\\UserRegistrations.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Services\\UserRegistrations.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Services\\UserRegistrations.cs",
+              "RelativeToolTip": "EventEase_01\\Services\\UserRegistrations.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-17T05:15:47.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Registration.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Registration.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\User\\Registration.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Registration.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\User\\Registration.cshtml",
+              "ViewState": "AQIAAAQAAADw/v///78twFUAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-12T09:02:53.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Home\\Login.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\Home\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Home\\Login.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\Home\\Login.cshtml",
+              "ViewState": "AQIAABsAAAAAAAAAAABAPRcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-12T07:11:14.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "EventEase_01",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\EventEase_01.csproj",
+              "RelativeDocumentMoniker": "EventEase_01\\EventEase_01.csproj",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\EventEase_01.csproj",
+              "RelativeToolTip": "EventEase_01\\EventEase_01.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-23T08:50:24.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "EventEase_01.csproj",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\EventEase_01.csproj",
+              "RelativeDocumentMoniker": "EventEase_01\\EventEase_01.csproj",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\EventEase_01.csproj",
+              "RelativeToolTip": "EventEase_01\\EventEase_01.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-12T10:34:07.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Program.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Program.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Program.cs",
+              "RelativeToolTip": "EventEase_01\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-12T06:48:47.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAsAAACYLjMzMzMbwBkAAABzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-12T11:21:14.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Venues\\Create.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\Venues\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Venues\\Create.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\Venues\\Create.cshtml",
+              "ViewState": "AQIAAAYAAACAZWZmZmYkwAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T07:38:01.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Login.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\User\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Login.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\User\\Login.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEUAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-12T08:39:53.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "Dashboard.cshtml",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\User\\Dashboard.cshtml",
               "RelativeDocumentMoniker": "EventEase_01\\Views\\User\\Dashboard.cshtml",
@@ -285,46 +446,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Program.cs",
-              "RelativeDocumentMoniker": "EventEase_01\\Program.cs",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Program.cs",
-              "RelativeToolTip": "EventEase_01\\Program.cs",
-              "ViewState": "AQIAACIAAACAZmZmZmYSwDsAAAAAAAAA",
+              "DocumentIndex": 22,
+              "Title": "RegistrationModel.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\RegistrationModel.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Models\\RegistrationModel.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\RegistrationModel.cs",
+              "RelativeToolTip": "EventEase_01\\Models\\RegistrationModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T06:48:47.259Z",
+              "WhenOpened": "2024-04-12T08:59:44.635Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "EventEase_01\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "EventEase_01\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAkAAADAMDMzMzMLwBQAAAA3AAAA",
+              "DocumentIndex": 24,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "EventEase_01\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "EventEase_01\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-04-16T10:19:40.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "EventEase_01\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "EventEase_01\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-12T11:21:14.036Z",
+              "WhenOpened": "2024-04-22T06:04:23.369Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Home\\Login.cshtml",
-              "RelativeDocumentMoniker": "EventEase_01\\Views\\Home\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Home\\Login.cshtml",
-              "RelativeToolTip": "EventEase_01\\Views\\Home\\Login.cshtml",
-              "ViewState": "AQIAAAsAAAAAxczMzMwAwB0AAABIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-12T07:11:14.706Z",
+              "DocumentIndex": 26,
+              "Title": "loginModel.cs",
+              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\loginModel.cs",
+              "RelativeDocumentMoniker": "EventEase_01\\Models\\loginModel.cs",
+              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\loginModel.cs",
+              "RelativeToolTip": "EventEase_01\\Models\\loginModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-12T07:17:31.117Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 27,
               "Title": "AESEncryption.cs",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Services\\AESEncryption.cs",
               "RelativeDocumentMoniker": "EventEase_01\\Services\\AESEncryption.cs",
@@ -337,19 +511,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 29,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\User.cs",
               "RelativeDocumentMoniker": "EventEase_01\\Models\\User.cs",
               "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\User.cs",
               "RelativeToolTip": "EventEase_01\\Models\\User.cs",
-              "ViewState": "AQIAAAsAAAAgMzMzMzMhwBkAAAAAAAAA",
+              "ViewState": "AQIAAAsAAACQmZmZmZk1wBkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T08:51:16.329Z"
+              "WhenOpened": "2024-04-12T08:51:16.329Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 28,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\Order.cs",
               "RelativeDocumentMoniker": "EventEase_01\\Models\\Order.cs",
@@ -357,23 +532,12 @@
               "RelativeToolTip": "EventEase_01\\Models\\Order.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T10:22:45.368Z"
+              "WhenOpened": "2024-04-12T10:22:45.368Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "EventEase01Context.cs",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\EventEase01Context.cs",
-              "RelativeDocumentMoniker": "EventEase_01\\Models\\EventEase01Context.cs",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Models\\EventEase01Context.cs",
-              "RelativeToolTip": "EventEase_01\\Models\\EventEase01Context.cs",
-              "ViewState": "AQIAACgAAACALjMzMzMfwCMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T06:44:22.428Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 30,
               "Title": "Microsoft.NET.Sdk.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\8.0.204\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.targets",
@@ -381,11 +545,12 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\8.0.204\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.targets",
               "ViewState": "AQIAALgCAAAAAAAAAAAjwMYCAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2024-04-18T07:20:49.469Z"
+              "WhenOpened": "2024-04-18T07:20:49.469Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 31,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "EventEase_01\\Views\\Home\\Index.cshtml",
@@ -393,23 +558,12 @@
               "RelativeToolTip": "EventEase_01\\Views\\Home\\Index.cshtml",
               "ViewState": "AQIAALQAAAAAy8zMzAwswMgAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-12T11:23:14.991Z"
+              "WhenOpened": "2024-04-12T11:23:14.991Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "site.css",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\css\\site.css",
-              "RelativeDocumentMoniker": "EventEase_01\\wwwroot\\css\\site.css",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\css\\site.css",
-              "RelativeToolTip": "EventEase_01\\wwwroot\\css\\site.css",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-16T10:19:40.716Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 32,
               "Title": "secrets.json",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\AppData\\Roaming\\Microsoft\\UserSecrets\\b5490969-ddc4-40f1-a6f6-79da04dde47b\\secrets.json",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\b5490969-ddc4-40f1-a6f6-79da04dde47b\\secrets.json",
@@ -417,23 +571,12 @@
               "RelativeToolTip": "..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\b5490969-ddc4-40f1-a6f6-79da04dde47b\\secrets.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-12T10:34:12.092Z"
+              "WhenOpened": "2024-04-12T10:34:12.092Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "EventEase_01.csproj",
-              "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\EventEase_01.csproj",
-              "RelativeDocumentMoniker": "EventEase_01\\EventEase_01.csproj",
-              "ToolTip": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\EventEase_01.csproj",
-              "RelativeToolTip": "EventEase_01\\EventEase_01.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-04-12T10:34:07.843Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 33,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\appsettings.json",
               "RelativeDocumentMoniker": "EventEase_01\\appsettings.json",
@@ -441,7 +584,8 @@
               "RelativeToolTip": "EventEase_01\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAB3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-12T06:55:23.678Z"
+              "WhenOpened": "2024-04-12T06:55:23.678Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -90,6 +90,14 @@
             <input type="password" id="password" asp-for="Password" />
             <span id="passwordError" style="color: red;"></span>
         </div>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+ 
         <button type="submit">Register</button>
     </form>
    

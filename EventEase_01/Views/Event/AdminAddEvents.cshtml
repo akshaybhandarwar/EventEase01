@@ -1,4 +1,6 @@
-﻿@model EventEase_01.Models.Event
+﻿@using Microsoft.EntityFrameworkCore
+
+@* @model EventEase_01.Models.Event
 
 @{
     ViewData["Title"] = "View";
@@ -11,7 +13,6 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-controller="Event" asp-action="AdminAddEvents" method="post">
-        @* <form asp-action="View"> *@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EventName" class="control-label"></label>
@@ -41,4 +42,88 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ *@
+ @model EventEase_01.Models.Event
+
+@{
+    ViewData["Title"] = "Adding A New Event ";
+}
+<h1>View</h1>
+
+<h4>Event</h4>
+<input asp-controller="Venues" asp-action="Create" method="post" type="submit" value="Add A New Venue" class="btn btn-primary" />
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Event" asp-action="AdminAddEvents" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EventName" class="control-label"></label>
+                <input asp-for="EventName" class="form-control" />
+                <span asp-validation-for="EventName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDescription" class="control-label"></label>
+                <input asp-for="EventDescription" class="form-control" />
+                <span asp-validation-for="EventDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDate" class="control-label"></label>
+                <input asp-for="EventDate" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                <span asp-validation-for="EventDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VenueId" class="control-label">Select Venue:</label>
+                <select asp-for="VenueId" class="form-control">
+                    <option value="">-- Select Venue --</option>
+                    @{
+                        var venues = ViewData["Venues"] as List<Venue>;
+
+                    }
+
+                    @if (venues != null)
+                    {
+                        Console.WriteLine("Inside if ");
+                        foreach (var venue in venues)
+                        {
+                            <option value="@venue.VenueId">@venue.VenueName</option>
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Inside else ");
+                        <p>No venues available</p>
+                    }
+
+               
+                </select>
+                <span asp-validation-for="VenueId" class="text-danger"></span>
+            </div>
+
+          
+            <br />
+
+            <div class="form-group">
+                <input type="submit" formmethod="post" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        var dateInput = document.querySelector('input[type="datetime-local"]');
+        dateInput.addEventListener('change', function() {
+            var selectedDate = new Date(this.value);
+            var currentDate = new Date();
+            if (selectedDate < currentDate) {
+                this.setCustomValidity("Date must be equal to or after the current date and time");
+            } else {
+                this.setCustomValidity("");
+            }
+        });
+    </script>
 }

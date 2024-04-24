@@ -4,8 +4,6 @@ using EventEase_01.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 
-
-
 namespace EventEase_01.Controllers
 {
     public class UserController : Controller
@@ -14,8 +12,6 @@ namespace EventEase_01.Controllers
         private readonly IConfiguration _config;
         private readonly AESEncryption _encryptionService;
         private readonly UserRegistrations _registrationService;
-
-
         public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice,UserRegistrations registrationService)
         {
             _config = config;
@@ -84,6 +80,7 @@ namespace EventEase_01.Controllers
                     if (encryptedPassword == myUser.PasswordHash)
                     {
                         return View("AdminDashboard");
+                        //return RedirectToAction("AdminDashboard");
                     }
                 }
             }
@@ -97,17 +94,26 @@ namespace EventEase_01.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(RegistrationModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
-            }
-            var userRegistrations = new UserRegistrations(_context, _config, _encryptionService);
-            var result = await userRegistrations.RegisterUserAsync(model);
-            if (result)
-            {
+               
+                Console.WriteLine("Entered ModelState is Valid");
+                var userRegistrations = new UserRegistrations(_context, _config, _encryptionService);
+                bool result = await userRegistrations.RegisterUserAsync(model);
+                Console.WriteLine("User registration is done ");
+                if (result)
+                {
 
-                TempData["SuccessMessage"] = "Registration successful! Please log in.";
-                return RedirectToAction("Login");
+                    TempData["SuccessMessage"] = "Registration successful! Please log in.";
+                    return RedirectToAction("Login");
+                }
+               
+                else
+                {
+                    Console.WriteLine("Entered Else block Same registration Found ...");
+                    TempData["ErrorMessage"] = "Registration failed. Email ID already exists. Please register with a different email ID.";
+                   
+                }
             }
             return View(model);
         }
@@ -153,3 +159,4 @@ namespace EventEase_01.Controllers
       
     }
 }
+

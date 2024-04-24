@@ -1,18 +1,18 @@
 ﻿@model EventEase_01.Models.Event
-
-@{
+ @{
     ViewData["Title"] = "AdminDashboard";
 }
-
 <h1>Admin Dashboard</h1>
-
-<h4></h4>
 @if (TempData["EventAddedMessage"] != null)
 {
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success">
         @TempData["EventAddedMessage"]
     </div>
 }
+@* <button asp-controller="Event" asp-action="AdminDashboard" type="submit" class="btn btn-primary">Add A New Event</button> *@
+
+@* <button asp-controller="Event" asp-action="AdminAddEvents" type="submit" method="get" class="btn btn-primary">Add A New Event</button>
+ *@<h4></h4>
 <hr />
 @* <div class="row">
     <div class="col-md-4">
@@ -25,14 +25,14 @@
 </div> *@
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Event" asp-action="AddEvents">
+
+        <form asp-controller="Event" asp-action="AdminDashboard" method="get">
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Add A New Event</button>
             </div>
         </form>
     </div>
 </div>
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

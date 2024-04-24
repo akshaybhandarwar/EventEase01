@@ -1,0 +1,41 @@
+﻿@* 
+@{
+    ViewData["Title"] = "GetEvent";
+}
+ *@
+
+@model List<Event>
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Upcoming Events </h1>
+    @{
+        ViewBag.Title = "Events";
+    }
+    <h2>Events</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Date</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EventId</td>
+                    <td>@item.EventName</td>
+                    <td>@item.EventDescription</td>
+                    <td>@item.EventDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

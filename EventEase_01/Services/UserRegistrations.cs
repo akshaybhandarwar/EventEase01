@@ -11,7 +11,6 @@ namespace EventEase_01.Services
         private readonly EventEase01Context _context;
         private readonly IConfiguration _config;
         private readonly AESEncryption _encryptionService;
-
         public UserRegistrations(EventEase01Context context, IConfiguration config, AESEncryption encryptionService)
         {
             _context = context;
@@ -21,7 +20,10 @@ namespace EventEase_01.Services
 
         public async Task<bool> RegisterUserAsync(RegistrationModel model)
         {
-
+            if (_context.Users.Any(u => u.UserEmail == model.Email))
+            {
+                return false;
+            }
             string PassKey = _config["PasswordKey"];
             string PasswordSalt = null;
             var PasswordHash = _encryptionService.Encrypt(model.Password, out PasswordSalt, PassKey);
