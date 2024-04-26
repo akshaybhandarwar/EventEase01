@@ -1,22 +1,90 @@
 ﻿@model EventEase_01.Models.Event
 
-@{
+ @{
     ViewData["Title"] = "AdminDashboard";
 }
+<html>
+
 <h1>Admin Dashboard</h1>
 
 <hr />
 
+<head>
+    <style>
+        .SearchBar {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+        }
+    </style>
+</head>
 
+<body>
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Event" asp-action="AdminDashboard" method="get">
+        <form asp-controller="Event" asp-action="AdminAddEvents" method="get">
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Add A New Event</button>
             </div>
         </form>
+ 
+            <h1>Upcoming Events </h1>
+            @{
+                ViewBag.Title = "Events";
+            }
+
+            <div class=" SearchBar ">
+                <div class="btn-group">
+                    <button asp-for="result" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Search Events By Category
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/Event/Sports">Sports </a></li>
+                        <li><a class="dropdown-item" href="/Event/Dance">Dance</a></li>
+                        <li><a class="dropdown-item" href="/Event/Celebration">Celebration</a></li>
+                        <li><a class="dropdown-item" href="/Event/Music">Music</a></li>
+                        <li><a class="dropdown-item" href="/Event/Meditation">Meditation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Date</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var events = ViewData["Events"] as List<Event>;
+
+                    }
+                    @if (events != null)
+                    {
+                        
+                        @foreach (var item in events)
+                        {
+                            <tr>
+                                <td>@item.EventName</td>
+                                <td>@item.EventDescription</td>
+                                <td>@item.EventDate</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <p>No Events Found </p>
+                    }
 
 
+                </tbody>
+            </table>
+        </body>
+</html>
 
 
 @section Scripts {

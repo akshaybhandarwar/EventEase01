@@ -21,9 +21,6 @@ namespace EventEase_01
             builder.Services.AddScoped<UserRegistrations>();
 
             var app = builder.Build();
-
-
-
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");

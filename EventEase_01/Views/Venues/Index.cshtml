@@ -4,10 +4,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Didn't Find Your Venue ? Add a New Venue '</h1>
 
 <p>
+    @* <form asp-action="Create">
+        @* <button type="submit">Add a New Venue </button> 
+        <button type="submit" class="btn btn-dark">Add a New Venue</button>
+    </form> *@
+
     <a asp-action="Create">Create New</a>
+@*     <button asp-action="Create" class="btn btn-dark">Add a New Venue</button> *@
 </p>
 <table class="table">
     <thead>

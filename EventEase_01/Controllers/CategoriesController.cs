@@ -9,20 +9,22 @@ using EventEase_01.Models;
 
 namespace EventEase_01.Controllers
 {
-    public class VenuesController : Controller
+    public class CategoriesController : Controller
     {
         private readonly EventEase01Context _context;
 
-        public VenuesController(EventEase01Context context)
+        public CategoriesController(EventEase01Context context)
         {
             _context = context;
         }
-        // GET: Venues
+
+        // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Venues.ToListAsync());
+            return View(await _context.Categories.ToListAsync());
         }
-        // GET: Venues/Details/5
+
+        // GET: Categories/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -30,52 +32,39 @@ namespace EventEase_01.Controllers
                 return NotFound();
             }
 
-            var venue = await _context.Venues
-                .FirstOrDefaultAsync(m => m.VenueId == id);
-            if (venue == null)
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(venue);
+            return View(category);
         }
 
-
+        // GET: Categories/Create
         public IActionResult Create()
         {
             return View();
         }
-        // POST: Venues/Create
+
+        // POST: Categories/Create
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VenueId,VenueName,VenueAddress,VenueCapacity")] Venue venue)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription")] Category category)
         {
             if (ModelState.IsValid)
             {
-                venue.VenueId = Guid.NewGuid();
-                _context.Add(venue);
+                category.CategoryId = Guid.NewGuid();
+                _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(venue);
+            return View(category);
         }
 
-
-        //[HttpPost]
-        ////[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(VenueModel venue)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //venue.VenueId = Guid.NewGuid();
-        //        _context.Add(venue);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(venue);
-        //}
-        // GET: Venues/Edit/5
+        // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -83,21 +72,22 @@ namespace EventEase_01.Controllers
                 return NotFound();
             }
 
-            var venue = await _context.Venues.FindAsync(id);
-            if (venue == null)
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(venue);
+            return View(category);
         }
 
-        // POST: Venues/Edit/5
- 
+        // POST: Categories/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("VenueId,VenueName,VenueAddress,VenueCapacity")] Venue venue)
+        public async Task<IActionResult> Edit(Guid id, [Bind("CategoryId,CategoryName,CategoryDescription")] Category category)
         {
-            if (id != venue.VenueId)
+            if (id != category.CategoryId)
             {
                 return NotFound();
             }
@@ -106,12 +96,12 @@ namespace EventEase_01.Controllers
             {
                 try
                 {
-                    _context.Update(venue);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VenueExists(venue.VenueId))
+                    if (!CategoryExists(category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -122,9 +112,10 @@ namespace EventEase_01.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(venue);
+            return View(category);
         }
-        // GET: Venues/Delete/5
+
+        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -132,34 +123,34 @@ namespace EventEase_01.Controllers
                 return NotFound();
             }
 
-            var venue = await _context.Venues
-                .FirstOrDefaultAsync(m => m.VenueId == id);
-            if (venue == null)
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(venue);
+            return View(category);
         }
 
-        // POST: Venues/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var venue = await _context.Venues.FindAsync(id);
-            if (venue != null)
+            var category = await _context.Categories.FindAsync(id);
+            if (category != null)
             {
-                _context.Venues.Remove(venue);
+                _context.Categories.Remove(category);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VenueExists(Guid id)
+        private bool CategoryExists(Guid id)
         {
-            return _context.Venues.Any(e => e.VenueId == id);
+            return _context.Categories.Any(e => e.CategoryId == id);
         }
     }
 }

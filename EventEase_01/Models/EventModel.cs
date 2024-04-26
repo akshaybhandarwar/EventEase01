@@ -11,6 +11,7 @@ namespace EventEase_01.Models
         public DateTime EventDate { get; set; }
         //public string VenueName { get; set; }   
         public Guid VenueId { get; set; } 
+        public Guid CategoryId { get; set; }
         public List<Venue> VenueOptions { get; set; }
     }
 }

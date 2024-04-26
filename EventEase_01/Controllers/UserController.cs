@@ -79,8 +79,8 @@ namespace EventEase_01.Controllers
                     string encryptedPassword = _encryptionService.AuthEncrypt(login.Password, myUser.PasswordSalt, key);
                     if (encryptedPassword == myUser.PasswordHash)
                     {
-                        return View("AdminDashboard");
-                        //return RedirectToAction("AdminDashboard");
+                        //return View("AdminDashboard");
+                        return RedirectToAction("AdminDashboard");
                     }
                 }
             }
@@ -144,7 +144,7 @@ namespace EventEase_01.Controllers
         //    }
         //    return View(model);
         //}
-        public IActionResult Dashboard()
+        public ActionResult Dashboard()
         {
             if (HttpContext.Session.GetString("UserSession") != null)
             {
@@ -154,6 +154,20 @@ namespace EventEase_01.Controllers
             {
                 return RedirectToAction("Login");
             }
+            var events=_context.Events.ToList();    
+            return View(events);
+        }
+        [HttpGet]
+        public ActionResult AdminDashboard()
+        {
+            var events = _context.Events.ToList();
+            ViewData["Events"] = events;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AdminDashboard(EventModel model)
+        {
+            var events= _context.Events.ToList();
             return View();
         }
       

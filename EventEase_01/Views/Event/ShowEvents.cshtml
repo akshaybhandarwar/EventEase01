@@ -1,14 +1,35 @@
 ﻿@model List<Event>
-
 <!DOCTYPE html>
 <html>
-
+    <head>
+        <style>
+        .SearchBar {
+            position: absolute;
+            top:10%;
+            right: 10%;
+        }
+        </style>
+    </head>
 <body>
     <h1>Upcoming Events </h1>
     @{
         ViewBag.Title = "Events";
     }
 
+    <div class=" SearchBar ">
+        <div class="btn-group">
+            <button asp-for="result" type="button"  class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Search Events By Category 
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Event/Sports">Sports </a></li>
+                <li><a class="dropdown-item" href="/Event/Dance">Dance</a></li>
+                <li><a class="dropdown-item" href="/Event/Celebration">Celebration</a></li>
+				<li><a class="dropdown-item" href="/Event/Music">Music</a></li>
+                <li><a class="dropdown-item" href="/Event/Meditation">Meditation</a></li>
+            </ul>
+        </div>
+    </div>
     <h2>Events</h2>
 
     <table class="table">
@@ -25,7 +46,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-               
                     <td>@item.EventName</td>
                     <td>@item.EventDescription</td>
                     <td>@item.EventDate</td>
