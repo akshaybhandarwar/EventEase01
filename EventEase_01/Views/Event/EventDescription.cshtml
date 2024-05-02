@@ -1,0 +1,33 @@
+﻿
+@model EventEase_01.Models.Event
+
+@{
+    ViewData["Title"] = "EventDescription";
+}
+
+<h1>EventDescription</h1>
+
+@if (ViewData["Events"] != null)
+{
+    var eventDetails = ViewData["Events"] as EventEase_01.Models.Event;
+    var venuename = ViewData["VenueName"] as string;
+    var venueaddress = ViewData["VenueAddress"] as string;
+    if(eventDetails!=null){
+    <div class="event-item">
+        <div>
+            <h3>@eventDetails.EventName</h3>
+            <img src="@eventDetails.EventImageFileName" class="card-img-top" alt="@eventDetails.EventName">
+            <div class="event-body">
+                <p class="event-desc">@eventDetails.EventDescription</p>
+
+                    
+                    <p>Event Date : @eventDetails.EventDate</p>
+                    <p>Venue : @venuename</p>
+                    <p>Venue Address: @venueaddress</p>
+                <a href="@Url.Action("BookTicket", "Event", new { eventId = eventDetails.EventId })" class="btn btn-primary">Book Tickets</a>
+            </div>
+           
+        </div>
+    </div>
+    }
+}

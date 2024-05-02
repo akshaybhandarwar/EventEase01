@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventEase_01.Models;
 
@@ -16,10 +17,10 @@ public partial class Event
     public Guid? VenueId { get; set; }
     //public string VenueName { get; set; }   
     public Guid? CategoryId { get; set; }
-
     public virtual Category? Category { get; set; }
-
+    public string? EventImageFileName { get; set; }
+    //[NotMapped]
+    //public IFormFile? EventImage { get; set; }
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
-
     public virtual Venue? Venue { get; set; }
 }

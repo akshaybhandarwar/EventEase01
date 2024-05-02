@@ -1,5 +1,6 @@
 ﻿@using Microsoft.EntityFrameworkCore
- @model EventEase_01.Models.Event
+ @model EventEase_01.Models.EventModel 
+@*  @model EventModel *@
 
 @{
     ViewData["Title"] = "Adding A New Event ";
@@ -23,7 +24,7 @@
 <br />
 
 <div class="but">
-<form asp-controller="Categories" asp-action="Create" method="post">
+    <form asp-controller="Categories" asp-action="Create" method="post" >
     <div class="form-group">
         <input type="submit" formmethod="post" value="Add a New Category for Event  " class="btn btn-primary" />
     </div>
@@ -33,7 +34,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Event" asp-action="AdminAddEvents" method="post">
+        <form asp-controller="Event" asp-action="AdminAddEvents" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EventName" class="control-label"></label>
@@ -45,6 +46,13 @@
                 <input asp-for="EventDescription" class="form-control" />
                 <span asp-validation-for="EventDescription" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EventImage, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.EventImage, new { type = "file", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EventImage, "")
+            </div>
+
+
             <div class="form-group">
                 <label asp-for="EventDate" class="control-label"></label>
                 <input asp-for="EventDate" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
@@ -86,7 +94,6 @@
                         var categories = ViewData["Categories"] as List<Category>;
 
                     }
-
                     @if (categories != null)
                     {
                         Console.WriteLine("Inside if ");
@@ -101,22 +108,17 @@
                         Console.WriteLine("Inside else ");
                         <p>No Category available</p>
                     }
-
-
                 </select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-          
             <br />
-
+              
             <div class="form-group">
                 <input type="submit" formmethod="post" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-
 @section Scripts {
     <script>
         var dateInput = document.querySelector('input[type="datetime-local"]');

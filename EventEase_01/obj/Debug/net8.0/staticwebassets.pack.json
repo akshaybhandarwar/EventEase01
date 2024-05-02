@@ -5,6 +5,54 @@
       "PackagePath": "staticwebassets\\EventEase_01.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\35a84929-ddf3-4e04-9e84-9e7c2845246d_Screenshot (5).png",
+      "PackagePath": "staticwebassets\\EventImages\\35a84929-ddf3-4e04-9e84-9e7c2845246d_Screenshot (5).png"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\51dc4d58-52ff-4c95-b77d-f400de1a00ec_SonuNigamEvent.jpg",
+      "PackagePath": "staticwebassets\\EventImages\\51dc4d58-52ff-4c95-b77d-f400de1a00ec_SonuNigamEvent.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\5a3b84a0-b97a-4f61-8d81-0d332b3df34e_Event2.jpg",
+      "PackagePath": "staticwebassets\\EventImages\\5a3b84a0-b97a-4f61-8d81-0d332b3df34e_Event2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\68f21990-59c4-45e3-8650-f614b166dda6_Screenshot (34).png",
+      "PackagePath": "staticwebassets\\EventImages\\68f21990-59c4-45e3-8650-f614b166dda6_Screenshot (34).png"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\798ca6b8-571d-416e-90a7-e6b0e6779555_EternalVoice.jpg",
+      "PackagePath": "staticwebassets\\EventImages\\798ca6b8-571d-416e-90a7-e6b0e6779555_EternalVoice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\8e2e4a12-6da8-4c8b-bca0-66be90b93bee_EternalVoice.jpg",
+      "PackagePath": "staticwebassets\\EventImages\\8e2e4a12-6da8-4c8b-bca0-66be90b93bee_EternalVoice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\917e1011-be54-4bb5-ae4e-6a3a14697d92_Screenshot (7).png",
+      "PackagePath": "staticwebassets\\EventImages\\917e1011-be54-4bb5-ae4e-6a3a14697d92_Screenshot (7).png"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\9636a9ce-99dd-46cd-9a18-73997564fcef_Screenshot (1).png",
+      "PackagePath": "staticwebassets\\EventImages\\9636a9ce-99dd-46cd-9a18-73997564fcef_Screenshot (1).png"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\a3b2904f-afdf-4bbe-a9f0-edb5fe3329dd_Event2.jpg",
+      "PackagePath": "staticwebassets\\EventImages\\a3b2904f-afdf-4bbe-a9f0-edb5fe3329dd_Event2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\bd1f6f86-c7ee-4232-b76d-d0dfab9db415_Music-Concert.png",
+      "PackagePath": "staticwebassets\\EventImages\\bd1f6f86-c7ee-4232-b76d-d0dfab9db415_Music-Concert.png"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\c465907e-64be-4fd0-b2e5-4843e05be6b8_EternalVoice.jpg",
+      "PackagePath": "staticwebassets\\EventImages\\c465907e-64be-4fd0-b2e5-4843e05be6b8_EternalVoice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\default-Event.png",
+      "PackagePath": "staticwebassets\\EventImages\\default-Event.png"
+    },
+    {
       "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -154,8 +154,9 @@ namespace EventEase_01.Controllers
             {
                 return RedirectToAction("Login");
             }
-            var events=_context.Events.ToList();    
-            return View(events);
+            var events=_context.Events.ToList();
+            ViewData["Events"] = events;
+            return View();
         }
         [HttpGet]
         public ActionResult AdminDashboard()
@@ -170,7 +171,31 @@ namespace EventEase_01.Controllers
             var events= _context.Events.ToList();
             return View();
         }
-      
+        public ActionResult EventDescription(Guid eventId)
+        {
+
+            //var eventDetails = _context.Events.FirstOrDefault(e => e.EventId == eventId);
+            //var eventDetails = (from e in _context.Events
+            //                    join v in _context.Venues on e.VenueId equals v.VenueId
+            //                    where e.EventId == eventId
+            //                    select new { Event = e, Venue = v })
+            //       .FirstOrDefault();
+            //ViewData["Events"] = eventDetails;
+            var eventDetails = (from e in _context.Events
+                                join v in _context.Venues on e.VenueId equals v.VenueId
+                                where e.EventId == eventId
+                                select new { Event = e, VenueName = v.VenueName, VenueAddress = v.VenueAddress })
+                   .FirstOrDefault();
+            if (eventDetails != null)
+            {
+
+                ViewData["Events"] = eventDetails.Event;
+                ViewData["VenueName"] = eventDetails.VenueName;
+                ViewData["VenueAddress"] = eventDetails.VenueAddress;
+            }
+
+            return View();
+        }
     }
 }
 
