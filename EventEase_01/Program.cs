@@ -1,7 +1,12 @@
 using EventEase_01.Models;
 using EventEase_01.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Configuration;
+using System.Net;
+using System.Text;
 
 namespace EventEase_01
 {
@@ -18,7 +23,25 @@ namespace EventEase_01
             var config = provider.GetService<IConfiguration>();
             builder.Services.AddDbContext<EventEase01Context>(item => item.UseSqlServer(config.GetConnectionString("dbcs")));
             builder.Services.AddSingleton<AESEncryption>(provider => new AESEncryption(config["PasswordKey"]));
+
             builder.Services.AddScoped<UserRegistrations>();
+            builder.Services.AddScoped<JwtToken>();
+         
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = config["Jwt:Issuer"],
+                    ValidAudience = config["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                };
+            });
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
             if (!app.Environment.IsDevelopment())
@@ -28,32 +51,51 @@ namespace EventEase_01
             }
             app.UseSession();
             app.UseHttpsRedirection();
+         
             app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            app.Use(async (context, next) =>
             {
-                endpoints.MapControllerRoute(
-                  name: "default",
-                  pattern: "{controller=Home}/{action=Index}/{id?}"
-              );
+                var JWTokenCookie = context.Request.Cookies["JWTToken"];
+                if (!string.IsNullOrEmpty(JWTokenCookie))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + JWTokenCookie);
+                }
+                await next();
+            });
 
-                endpoints.MapControllerRoute(
-                    name: "Venues",
-                    pattern: "{controller=Venues}/{action=Create}/{fromButton?}/{id?}",
-                    defaults: new { controller = "Venues", action = "Create" }
-                );
-              
+            app.Use(async (context, next) =>
+            {
+                await next();
 
+                if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized && !context.User.Identity.IsAuthenticated)
+                {
+                    if (context.Request.Path.StartsWithSegments("/api"))
+                    {
+                        // For API requests, return the unauthorized message
+                        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        await context.Response.WriteAsync("Please log in to access this resource.");
+                    }
+                    else
+                    {
+                        // Redirect to the login page only if the user is not authenticated
+                        string loginUrl = $"/User/Login?returnUrl={context.Request.Path.Value}&message=Please log in to access this resource.";
+                        context.Response.Redirect(loginUrl);
+                    }
+                }
             });
 
 
-            //app.MapControllerRoute(
-            //    name: "default",
-            //    pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.UseRouting();
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
+
+
+
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             //app.MapControllerRoute(
             //name: "default",

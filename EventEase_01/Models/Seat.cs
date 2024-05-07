@@ -19,3 +19,4 @@ public partial class Seat
 
     public virtual Venue? Venue { get; set; }
 }
+

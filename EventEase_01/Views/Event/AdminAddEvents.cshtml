@@ -92,7 +92,6 @@
                     <option value="">-- Select Category --</option>
                     @{
                         var categories = ViewData["Categories"] as List<Category>;
-
                     }
                     @if (categories != null)
                     {
@@ -110,6 +109,11 @@
                     }
                 </select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfTickets" class="control-label"></label>
+                <input asp-for="NumberOfTickets" class="form-control" />
+                <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
             </div>
             <br />
               

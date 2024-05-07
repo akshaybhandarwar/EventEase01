@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CUXfvc0KvdqAnRmFs4f1BXf/Qn1p00U1mRb86EdXlJw=",
+  "Hash": "ucFTJYHiCJc6kd6qWJ2KDCtDNLJJT2nw5urDY8aX7Fg=",
   "Source": "EventEase_01",
   "BasePath": "_content/EventEase_01",
   "Mode": "Default",
@@ -245,6 +245,25 @@
       "OriginalItemSpec": "wwwroot\\EventImages\\a3b2904f-afdf-4bbe-a9f0-edb5fe3329dd_Event2.jpg"
     },
     {
+      "Identity": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\b9f454e4-9584-45cc-862f-13d8dfaad101_IPL.jpg",
+      "SourceId": "EventEase_01",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\",
+      "BasePath": "_content/EventEase_01",
+      "RelativePath": "EventImages/b9f454e4-9584-45cc-862f-13d8dfaad101_IPL.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\EventImages\\b9f454e4-9584-45cc-862f-13d8dfaad101_IPL.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\bd1f6f86-c7ee-4232-b76d-d0dfab9db415_Music-Concert.png",
       "SourceId": "EventEase_01",
       "SourceType": "Discovered",
@@ -281,6 +300,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\EventImages\\c465907e-64be-4fd0-b2e5-4843e05be6b8_EternalVoice.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\da506d12-46bb-4b47-a2f5-f93ed0feaf46_IPL-2024-Match-18-SRH-Vs-CSK-Astrology-Predictions-.jpg",
+      "SourceId": "EventEase_01",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\",
+      "BasePath": "_content/EventEase_01",
+      "RelativePath": "EventImages/da506d12-46bb-4b47-a2f5-f93ed0feaf46_IPL-2024-Match-18-SRH-Vs-CSK-Astrology-Predictions-.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\EventImages\\da506d12-46bb-4b47-a2f5-f93ed0feaf46_IPL-2024-Match-18-SRH-Vs-CSK-Astrology-Predictions-.jpg"
     },
     {
       "Identity": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\default-Event.png",

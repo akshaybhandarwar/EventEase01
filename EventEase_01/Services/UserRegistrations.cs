@@ -33,6 +33,7 @@ namespace EventEase_01.Services
                 UserEmail = model.Email,
                 PasswordHash = PasswordHash,
                 PasswordSalt = PasswordSalt,
+                UserRole="user"
             };
             await _context.Users.AddAsync(u1);
             await _context.SaveChangesAsync();

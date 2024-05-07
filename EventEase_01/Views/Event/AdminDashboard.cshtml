@@ -12,13 +12,7 @@
 }
 <html>
 <head>
-    <style>
-        .SearchBar {
-            position: absolute;
-            top: 10%;
-            right: 10%;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -34,7 +28,7 @@
         ViewBag.Title = "Events";
     }
 
-    <div class=" SearchBar ">
+@*     <div class=" SearchBar ">
         <div class="btn-group">
             <button asp-for="result" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Search Events By Category
@@ -48,7 +42,7 @@
                 <li><a class="dropdown-item" href="/Event/Meditation">Meditation</a></li>
             </ul>
         </div>
-    </div>
+    </div> *@
     @{
         var events = ViewData["Events"] as List<Event>;
     }
@@ -62,7 +56,7 @@
                     <div class="row g-0">
                         <div class="col-md-4">
                             @*                             <img src="@item.EventImageFileName" class="img-fluid rounded-start" alt="..." style="object-fit: cover;">
-                    *@  <img src="@item.EventImageFileName" class="img-fluid rounded-start" alt="..." style="object-fit: cover; height: 100%;">
+                    *@  <img src="@item.EventImageFileName" class="img-fluid rounded-start" alt="..." style="object-fit: cover; height: 200px; width: 200px;">
 
                         </div>
                         <div class="col-md-8">

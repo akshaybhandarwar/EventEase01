@@ -1,33 +1,154 @@
 ﻿
 @model EventEase_01.Models.Event
+<head>
+    <style>
+        .event-item {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
 
+        .event-header {
+            position: relative;
+        }
+
+            .event-header h3 {
+                background-color: rgba(0, 0, 0, 0.6);
+                color: #fff;
+                padding: 10px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                margin: 0;
+            }
+
+        .event-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .event-body {
+            padding: 20px;
+        }
+
+        .event-desc {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .event-details {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+            .event-details > div {
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+                margin-bottom: 10px;
+            }
+
+        .detail-label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .book-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+            .book-btn:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
 @{
     ViewData["Title"] = "EventDescription";
 }
 
-<h1>EventDescription</h1>
 
 @if (ViewData["Events"] != null)
 {
     var eventDetails = ViewData["Events"] as EventEase_01.Models.Event;
     var venuename = ViewData["VenueName"] as string;
     var venueaddress = ViewData["VenueAddress"] as string;
-    if(eventDetails!=null){
+  
+    @if (eventDetails != null)
+    {
+        <br />
+        <br />
+        <h1 style="text-align: center; background-color:crimson">@eventDetails.EventName</h1>
+
+        <br />
+        <div class="event-item">
+            <div class="event-header">
+                <h3>@eventDetails.EventName</h3>
+                <img src="@eventDetails.EventImageFileName" class="event-image" alt="@eventDetails.EventName">
+            </div>
+            <div class="event-body">
+                <p class="event-desc">@eventDetails.EventDescription</p>
+                <div class="event-details">
+                    <div>
+                        <span class="detail-label">Event Date:</span>
+                        <span class="detail-value">@eventDetails.EventDate</span>
+                    </div>
+                    
+                    <div>
+                        <span class="detail-label">Venue:</span>
+                        <span class="detail-value">@venuename</span>
+                    </div>
+                    
+                    <div>
+                        <span class="detail-label">Venue Address:</span>
+                        <span class="detail-value">@venueaddress</span>
+                    </div>
+                   
+                    @if (ViewData["CountOfTickets"] != null)
+                    {
+                        var countOfTickets = ViewData["CountOfTickets"] as int?;
+                        <div>
+                            <span class="detail-label">Number Of Tickets:</span>
+                            <span class="detail-value">@countOfTickets</span>
+                        </div>
+                    }
+                </div>
+                <a href="@Url.Action("SelectTickets", "User", new { eventId = eventDetails.EventId })" class="btn btn-primary book-btn">Book Tickets</a>
+            </div>
+        </div>
+    }
+@*     if(eventDetails!=null){
     <div class="event-item">
         <div>
             <h3>@eventDetails.EventName</h3>
             <img src="@eventDetails.EventImageFileName" class="card-img-top" alt="@eventDetails.EventName">
             <div class="event-body">
-                <p class="event-desc">@eventDetails.EventDescription</p>
-
-                    
+                <p class="event-desc">Event Description : @eventDetails.EventDescription</p>
                     <p>Event Date : @eventDetails.EventDate</p>
                     <p>Venue : @venuename</p>
                     <p>Venue Address: @venueaddress</p>
-                <a href="@Url.Action("BookTicket", "Event", new { eventId = eventDetails.EventId })" class="btn btn-primary">Book Tickets</a>
+                    @if (ViewData["CountOfTickets"] != null)
+                    {
+                        var countOfTickets = ViewData["CountOfTickets"] as int?;
+
+                        <p>Number Of Tickets: @countOfTickets</p>
+                    }
+                <a href="@Url.Action("SelectTickets", "User", new { eventId = eventDetails.EventId })" class="btn btn-primary">Book Tickets</a>
             </div>
-           
         </div>
     </div>
-    }
+    } *@
 }

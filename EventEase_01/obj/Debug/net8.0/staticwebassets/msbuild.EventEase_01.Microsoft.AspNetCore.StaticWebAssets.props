@@ -176,6 +176,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\EventImages\a3b2904f-afdf-4bbe-a9f0-edb5fe3329dd_Event2.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\EventImages\b9f454e4-9584-45cc-862f-13d8dfaad101_IPL.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>EventEase_01</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EventEase_01</BasePath>
+      <RelativePath>EventImages/b9f454e4-9584-45cc-862f-13d8dfaad101_IPL.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\EventImages\b9f454e4-9584-45cc-862f-13d8dfaad101_IPL.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\EventImages\bd1f6f86-c7ee-4232-b76d-d0dfab9db415_Music-Concert.png))">
       <SourceType>Package</SourceType>
       <SourceId>EventEase_01</SourceId>
@@ -207,6 +223,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\EventImages\c465907e-64be-4fd0-b2e5-4843e05be6b8_EternalVoice.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\EventImages\da506d12-46bb-4b47-a2f5-f93ed0feaf46_IPL-2024-Match-18-SRH-Vs-CSK-Astrology-Predictions-.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>EventEase_01</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/EventEase_01</BasePath>
+      <RelativePath>EventImages/da506d12-46bb-4b47-a2f5-f93ed0feaf46_IPL-2024-Match-18-SRH-Vs-CSK-Astrology-Predictions-.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\EventImages\da506d12-46bb-4b47-a2f5-f93ed0feaf46_IPL-2024-Match-18-SRH-Vs-CSK-Astrology-Predictions-.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\EventImages\default-Event.png))">
       <SourceType>Package</SourceType>

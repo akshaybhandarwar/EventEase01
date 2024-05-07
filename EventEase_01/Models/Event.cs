@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,6 +20,7 @@ public partial class Event
     public Guid? CategoryId { get; set; }
     public virtual Category? Category { get; set; }
     public string? EventImageFileName { get; set; }
+    public int NumberOfTickets { get; set; } 
     //[NotMapped]
     //public IFormFile? EventImage { get; set; }
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

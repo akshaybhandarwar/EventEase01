@@ -94,12 +94,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/User/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/User/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/User/PaymentGateway.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQYXltZW50R2F0ZXdheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/User/Registration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3RyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/User/SelectTickets.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTZWxlY3RUaWNrZXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/Venues/Create.cshtml]

@@ -264,3 +264,4 @@ C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\obj\Debug\net8.0\s
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\obj\Debug\net8.0\EventEas.1D17193D.Up2Date
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\obj\Debug\net8.0\EventEase_01.genruntimeconfig.cache
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\obj\Debug\net8.0\ref\EventEase_01.dll
+C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -86,7 +86,8 @@ namespace EventEase_01.Controllers
                 EventDate = model.EventDate,
                 VenueId = venue.VenueId,
                 CategoryId=category.CategoryId,
-                EventImageFileName= imagePath
+                EventImageFileName= imagePath,
+                NumberOfTickets=model.NumberOfTickets
 
             };
             Console.WriteLine("***********************");
@@ -102,7 +103,6 @@ namespace EventEase_01.Controllers
         [HttpGet]
         public async Task<ActionResult> AdminDashboard( )
         {
-          
             var events =_context.Events.Where(e=>e.EventDate>DateTime.Now).ToList();
             TempData["EventAddedMessage"] = "The Event is added. It will be live in a moment. ";
             ViewData["Events"] = events;
@@ -113,15 +113,17 @@ namespace EventEase_01.Controllers
         //    //var events = _context.Events.ToList();
         //    var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
         //    return View(events);
+        //return RedirectToAction("AdminDashboard");
         //}
         public ActionResult ShowEvents()
         {
-            //var events = _context.Events.ToList();
-            var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
-            //return View(events);
-            return RedirectToAction("AdminDashboard");
+          
+            var events = _context.Events.ToList();
+            ViewData["Events"] = events;
+            return View();
+          
         }
-
+       
         public ActionResult GetEvent()
         {
             var events = _context.Events.ToList();
@@ -131,31 +133,40 @@ namespace EventEase_01.Controllers
         {
             var categoryId = new Guid("F965E862-DBE5-4661-9A80-6CA53DC7247E");
             var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
-            return View("ShowEvents", events);
+            ViewData["Events"] = events;
+            return View("ShowEvents");
         }
         public ActionResult Dance()
         {
             var categoryId = new Guid("4DA741ED-C888-4D66-B668-29D098C66DF4");
             var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
-            return View("ShowEvents", events);
+            ViewData["Events"] = events;
+            return View("ShowEvents");
         }
         public ActionResult Music()
         {
             var categoryId = new Guid("C130AA81-62DD-40A6-8413-A22D2E72B365");
             var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
-            return View("ShowEvents", events);
+            ViewData["Events"] = events;
+            foreach(var item in events)
+            {
+                Console.WriteLine(item.EventName);
+            }
+            return View("ShowEvents");
         }
         public ActionResult Celebration()
         {
             var categoryId = new Guid("E5F54FF5-B244-4B48-B8EC-C2007216A533");
             var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
-            return View("ShowEvents", events);
+            ViewData["Events"] = events;
+            return View("ShowEvents");
         }
         public ActionResult Meditation()
         {
             var categoryId = new Guid("A49BF1E0-6DDC-4282-92D2-6642BDD65469");
             var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
-            return View("ShowEvents", events);
+            ViewData["Events"] = events;
+            return View("ShowEvents");
         }
     
         public ActionResult EventDescription(Guid eventId)
@@ -170,6 +181,7 @@ namespace EventEase_01.Controllers
             Console.WriteLine(eventId);
            
             Console.WriteLine("***********************");
+        
 
             if (eventDetails != null)
             {
@@ -180,10 +192,20 @@ namespace EventEase_01.Controllers
                 ViewData["Events"] = eventDetails.Event;
                 ViewData["VenueName"] = eventDetails.VenueName;
                 ViewData["VenueAddress"] = eventDetails.VenueAddress;
+              
             }
-
+           
+            var selectedEvent = ViewData["Events"] as EventEase_01.Models.Event;
+            if (selectedEvent != null)
+            {
+                var countOfTickets = _context.Events.Where(e => e.EventId == selectedEvent.EventId)
+                                                     .Select(e => e.NumberOfTickets)
+                                                     .FirstOrDefault();
+                ViewData["CountOfTickets"] = countOfTickets;
+            }
             return View();
         }
 
     }
 }
+
