@@ -27,14 +27,13 @@ namespace EventEase_01.Services
                 var claims = new[]
                 {
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                //new Claim(ClaimTypes.NameIdentifier,user.UserName),
                 new Claim(ClaimTypes.Role,Role)
             };
             
                 var token = new JwtSecurityToken(_config["Jwt:Issuer"],
                     _config["Jwt:Audience"],
                     claims,
-                    expires: DateTime.Now.AddMinutes(15),
+                    expires: DateTime.Now.AddMinutes(25),
                     signingCredentials: credentials);
             
 

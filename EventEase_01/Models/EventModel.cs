@@ -16,6 +16,7 @@ namespace EventEase_01.Models
         public Guid VenueId { get; set; }
         public Guid CategoryId { get; set; }
         public int NumberOfTickets { get; set; }    
+        public int TicketPrice { get; set; }    
         public List<Venue> VenueOptions { get; set; }
         public IFormFile EventImage { get; set; }
 

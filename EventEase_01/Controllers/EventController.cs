@@ -6,6 +6,7 @@ using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using EventEase_01.ViewModels;
 using System;
+using System.Net.Sockets;
 
 namespace EventEase_01.Controllers
 {
@@ -19,13 +20,14 @@ namespace EventEase_01.Controllers
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
+
         public async Task<string> UploadImage(IFormFile imageFile)
         {
             if (imageFile != null && imageFile.Length > 0)
             {
                 try
                 {
-                    //var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages");
+                   
                     var uploadsFolder = "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages";
 
 
@@ -43,17 +45,17 @@ namespace EventEase_01.Controllers
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    // Return a default image path in case of error
+                   
                     return "/EventImages/default-Event.png";
                 }
             }
             else
             {
-                // Return the default image path if no file is uploaded
+               
                 return "/EventImages/default-Event.png";
             }
         }
-        [HttpGet]//-> Hits When Clicked on Create a new Event - lands on Admin Add Event view 
+        [HttpGet]
         public ActionResult AdminAddEvents()
         {
             var venues = _context.Venues.ToList();
@@ -65,34 +67,53 @@ namespace EventEase_01.Controllers
             return View();
             
         }
-        [HttpPost]//-Hits after a new event is created ....
+        [HttpPost]
         public async Task<ActionResult> AdminAddEvents(EventModel model)
         {
             var venue = _context.Venues
                    .Where(e => e.VenueId == model.VenueId)
                    .FirstOrDefault();
-            var category= _context.Categories.
-                Where(e=>e.CategoryId==model.CategoryId).
+            var category = _context.Categories.
+                Where(e => e.CategoryId == model.CategoryId).
                 FirstOrDefault();
-            Console.WriteLine("****************");
-            Console.WriteLine(model.EventImage.FileName);
-           
+
             string imagePath = await UploadImage(model.EventImage);
 
-            Event e1 = new Event
+            if (venue != null && category != null)
             {
-                EventName = model.EventName,
-                EventDescription = model.EventDescription,
-                EventDate = model.EventDate,
-                VenueId = venue.VenueId,
-                CategoryId=category.CategoryId,
-                EventImageFileName= imagePath,
-                NumberOfTickets=model.NumberOfTickets
+                Event e1 = new Event
+                {
+                    EventName = model.EventName,
+                    EventDescription = model.EventDescription,
+                    EventDate = model.EventDate,
+                    VenueId = venue.VenueId,
+                    CategoryId = category.CategoryId,
+                    EventImageFileName = imagePath,
+                    NumberOfTickets = model.NumberOfTickets
+                };
 
-            };
-            Console.WriteLine("***********************");
-            Console.WriteLine(e1.EventImageFileName);
-            await _context.Events.AddAsync(e1);
+                await _context.Events.AddAsync(e1);
+                await _context.SaveChangesAsync();
+            }
+            var addedEvent = await _context.Events
+                       .Where(e => e.EventName == model.EventName)
+                       .FirstOrDefaultAsync();
+            Console.WriteLine(model.EventName);
+            for (int i = 0; i < model.NumberOfTickets; i++)
+            {
+                if (addedEvent != null)
+                {
+                    Ticket ticket = new Ticket
+                    {
+                        TicketPrice = model.TicketPrice,
+                        EventId = addedEvent.EventId,
+                        TicketAvailability = 1
+
+                    };
+                    await _context.Tickets.AddAsync(ticket);
+                    await _context.SaveChangesAsync();
+                }
+            }
             await _context.SaveChangesAsync();
             TempData["EventAddedMessage"] = "The Event is added. It will be live in a moment. ";
             var events = _context.Events.ToList();
@@ -101,29 +122,20 @@ namespace EventEase_01.Controllers
 
         }
         [HttpGet]
-        public async Task<ActionResult> AdminDashboard( )
+        public ActionResult AdminDashboard( )
         {
             var events =_context.Events.Where(e=>e.EventDate>DateTime.Now).ToList();
             TempData["EventAddedMessage"] = "The Event is added. It will be live in a moment. ";
             ViewData["Events"] = events;
             return View();
         }
-        //public ActionResult ShowEvents()
-        //{
-        //    //var events = _context.Events.ToList();
-        //    var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
-        //    return View(events);
-        //return RedirectToAction("AdminDashboard");
-        //}
+
         public ActionResult ShowEvents()
         {
-          
             var events = _context.Events.ToList();
             ViewData["Events"] = events;
             return View();
-          
         }
-       
         public ActionResult GetEvent()
         {
             var events = _context.Events.ToList();
@@ -171,16 +183,15 @@ namespace EventEase_01.Controllers
     
         public ActionResult EventDescription(Guid eventId)
         {
-           
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "User");
+            }
             var eventDetails = (from e in _context.Events
                                 join v in _context.Venues on e.VenueId equals v.VenueId
                                 where e.EventId == eventId
                                 select new { Event = e, VenueName = v.VenueName , VenueAddress=v.VenueAddress})
                    .FirstOrDefault();
-            Console.WriteLine("***********************");
-            Console.WriteLine(eventId);
-           
-            Console.WriteLine("***********************");
         
 
             if (eventDetails != null)
@@ -192,9 +203,7 @@ namespace EventEase_01.Controllers
                 ViewData["Events"] = eventDetails.Event;
                 ViewData["VenueName"] = eventDetails.VenueName;
                 ViewData["VenueAddress"] = eventDetails.VenueAddress;
-              
             }
-           
             var selectedEvent = ViewData["Events"] as EventEase_01.Models.Event;
             if (selectedEvent != null)
             {
@@ -205,7 +214,6 @@ namespace EventEase_01.Controllers
             }
             return View();
         }
-
     }
 }
 

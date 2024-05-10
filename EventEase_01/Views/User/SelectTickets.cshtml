@@ -1,85 +1,85 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+@model Event
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seat Selection</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        .seat {
+        .seat-container {
+            border: 1px solid black;
+            padding: 10px;
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: #ccc;
-            margin: 5px;
-            cursor: pointer;
+            background-color: red;
         }
 
-            .seat.selected {
-                background-color: #ffcc00;
-            }
-
-        .submit-button {
-            margin-top: 20px;
+        .selected {
+            background-color: #00FF00;
+            color: #FFFFFF;
         }
     </style>
+</head>
+<h2>@(Model?.EventName ?? "Event Name")</h2>
+@if (Model?.NumberOfTickets != null)
+{
+    var tickets = ViewData["Tickets"] as List<Ticket>;
+    if (tickets != null && tickets.Count >= Model.NumberOfTickets)
+    {
+        <div class="seat-container">
+            @for (int i = 0; i < Model.NumberOfTickets; i++)
+            {
+                var ticketId = tickets[i].TicketId;
+                var eventId = Model.EventId;
+                var ticketAvailability = tickets[i].TicketAvailability;
+                @* <button class="seat available" data-ticket-id="@ticketId">
+                    S-@(i + 1)
+                </button> *@
+                <button class="seat @(ticketAvailability == 0 ? "unavailable" : "available")" data-ticket-id="@ticketId" @(ticketAvailability == 0 ? "disabled" : "")>
+                    S-@(i + 1)
+                </button>
+            }
+        </div>
+    }
+    else
+    {
+        <p>There are not enough tickets available.</p>
+    }
+}
+<br />
+<div class="text-center">
+    @Html.ActionLink("Proceed To Checkout", "UpdateSeatStatus", "User", null, new { @class = "btn btn-success", @type = "button", id = "proceedButton" })
+</div>
 
-
-
-<body>
-    <h1>Seat Selection</h1>
-    <div id="seat-container" class="seat-container">
- 
-    </div>
-    <p>Selected Seats: <span id="selected-seats">0</span></p>
-
-  @if (ViewData["CountOfTickets"] != null)
-        {
-            var countOfTickets = ViewData["CountOfTickets"] as int?;
-        
-    <a href="/User/PaymentGateway" class="submit-button" onclick="submitSelection(@countOfTickets)">Submit</a>
-        }
+@section Scripts {
     <script>
-        
-            function submitSelection(int countOfTickets) {
-                
-                    const selectedSeats = document.querySelectorAll('.seat.selected');
-                    for (let i = 0; i < selectedSeats.length; i++) {
-                    selectedSeats[i].classList.remove('selected');
-                    selectedSeats[i].style.pointerEvents = 'none';
-                    selectedSeats[i].style.backgroundColor = '#999';
-                    }
-                    }
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const seatContainer = document.getElementById("seat-container");
-                        const selectedSeatsCount = document.getElementById("selected-seats");
-                        let selectedSeats = 0;
-
-                        for (let i = 1; i <= countOfTickets; i++) {
-                            const seat = document.createElement("div");
-                            seat.className = "seat";
-                            seat.textContent = i;
-
-                            seat.addEventListener("click", function () {
-                                if (!seat.classList.contains("selected")) {
-                                    seat.classList.add("selected");
-                                    selectedSeats++;
-                                } else {
-                                    seat.classList.remove("selected");
-                                    selectedSeats--;
-                                }
-                                selectedSeatsCount.textContent = selectedSeats;
-                            });
-
-                            seatContainer.appendChild(seat);
+        $(function () {
+            var selectedTickets = [];
+            $(".seat.available").click(function () {
+                $(this).toggleClass("selected");
+                var ticketId = $(this).data("ticket-id");
+                if ($(this).hasClass("selected")) {
+                    selectedTickets.push(ticketId);
+                } else {
+                    selectedTickets = selectedTickets.filter(function (id) {
+                        return id !== ticketId;
+                    });
+                }
+            });
+            $("#proceedButton").click(function () {
+                if (selectedTickets.length > 0) {
+                    var url = "@Url.Action("UpdateSeatStatus", "User")";
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {ticketIds: selectedTickets },
+                        success: function (response) {
+                            console.log(response);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
                         }
+                    });
+                } else {
+                    alert("Please select at least one ticket....");
+                }
+            });
         });
     </script>
-</body>
-</html>
-
-
+}
