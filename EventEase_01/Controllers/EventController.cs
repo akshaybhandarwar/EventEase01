@@ -20,17 +20,13 @@ namespace EventEase_01.Controllers
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
-
         public async Task<string> UploadImage(IFormFile imageFile)
         {
             if (imageFile != null && imageFile.Length > 0)
             {
                 try
                 {
-                   
                     var uploadsFolder = "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages";
-
-
                     var uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
 
                     var filePath = Path.Combine(uploadsFolder, uniqueFileName);
@@ -65,7 +61,6 @@ namespace EventEase_01.Controllers
             ViewData["Categories"] = categories;
             ViewData["Events"] = events;
             return View();
-            
         }
         [HttpPost]
         public async Task<ActionResult> AdminAddEvents(EventModel model)
@@ -91,7 +86,6 @@ namespace EventEase_01.Controllers
                     EventImageFileName = imagePath,
                     NumberOfTickets = model.NumberOfTickets
                 };
-
                 await _context.Events.AddAsync(e1);
                 await _context.SaveChangesAsync();
             }
@@ -119,7 +113,6 @@ namespace EventEase_01.Controllers
             var events = _context.Events.ToList();
             ViewData["Events"] = events;
             return View("AdminDashboard");
-
         }
         [HttpGet]
         public ActionResult AdminDashboard( )

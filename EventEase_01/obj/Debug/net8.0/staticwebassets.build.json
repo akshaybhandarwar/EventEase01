@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vY0AHq+LzjUc7XZQB/1/FihS/cIPLbvUNlJQzEA6p0Q=",
+  "Hash": "w3UXzQhzuvua1Bdvf+eleYuVZ43eyzVwyIkrBgypRgY=",
   "Source": "EventEase_01",
   "BasePath": "_content/EventEase_01",
   "Mode": "Default",
@@ -243,6 +243,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\EventImages\\6d91c358-5662-45ba-8089-4dbbbf3628df_download.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\7164c88f-b26e-48aa-9672-68fa8abdeb21_download (2).jpg",
+      "SourceId": "EventEase_01",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\",
+      "BasePath": "_content/EventEase_01",
+      "RelativePath": "EventImages/7164c88f-b26e-48aa-9672-68fa8abdeb21_download (2).jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\EventImages\\7164c88f-b26e-48aa-9672-68fa8abdeb21_download (2).jpg"
     },
     {
       "Identity": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\EventImages\\780c222c-c689-44f0-b5d6-cffb5380771c_Zakir_khan_2.jpg",

@@ -57,7 +57,6 @@ namespace EventEase_01.Controllers
                 if (encryptedPassword == myUser.PasswordHash)
                 {
                     string token = _jwtToken.GenerateToken(myUser);
-                    Console.WriteLine(token);
                     var cookieOptions = new CookieOptions
                     {
                         HttpOnly = true,
@@ -73,6 +72,10 @@ namespace EventEase_01.Controllers
                     if (myUser.UserRole == "admin")
                     {
                         return RedirectToAction("AdminDashboard", "User");
+                    }
+                    else if (myUser.UserRole == "S-admin")
+                    {
+                        return RedirectToAction("SuperAdminDashboard", "User");
                     }
                     else
                     {
@@ -95,10 +98,8 @@ namespace EventEase_01.Controllers
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine("Entered ModelState is Valid");
                 var userRegistrations = new UserRegistrations(_context, _config, _encryptionService);
                 bool result = await userRegistrations.RegisterUserAsync(model);
-                Console.WriteLine("User registration is done ");
                 if (result)
                 {
                     TempData["SuccessMessage"] = "Registration successful! Please log in.";
@@ -106,7 +107,6 @@ namespace EventEase_01.Controllers
                 }
                 else
                 {
-                    Console.WriteLine("Entered Else block Same registration Found ...");
                     TempData["ErrorMessage"] = "Registration failed. Email ID already exists. Please register with a different email ID.";
                 }
             }
@@ -150,12 +150,24 @@ namespace EventEase_01.Controllers
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
             return View();
         }
+        public IActionResult SuperAdminDashboard()
+        {
+            var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
+            ViewData["Events"] = events;
+            return View();
+        }
+        public ActionResult ManageUser()
+        {
+            return View();
+        }
+
         public ActionResult PaymentGateway()
         {
             return View();
         }
         public ActionResult UpdateSeatStatus(List<Guid> ticketIds)
         {
+           
             
             foreach (var ticketId in ticketIds)
             {
@@ -164,10 +176,12 @@ namespace EventEase_01.Controllers
             }
             foreach (var ticketId in ticketIds)
             {
+                
                 var ticket = _context.Tickets.FirstOrDefault(t => t.TicketId == ticketId);
-
+                
                 if (ticket != null)
                 {
+                    
                     ticket.TicketAvailability = 0;
                 }
             }
@@ -179,7 +193,8 @@ namespace EventEase_01.Controllers
         {
             //var selectedEvent = ViewData["Events"] as EventEase_01.Models.Event;
             var eventModel = _context.Events.FirstOrDefault(e => e.EventId == eventId);
-            var ticket = _context.Tickets.ToList();
+            var ticket = _context.Tickets.Where(e => e.EventId == eventId).ToList();
+
             ViewData["Tickets"] = ticket;
             return View(eventModel);
         }

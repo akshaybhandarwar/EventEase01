@@ -1,6 +1,4 @@
-﻿
-@model Event
-
+﻿@model Event
 <head>
     <style>
         .seat-container {
@@ -26,12 +24,14 @@
             @for (int i = 0; i < Model.NumberOfTickets; i++)
             {
                 var ticketId = tickets[i].TicketId;
-                var eventId = Model.EventId;
+                Console.WriteLine(tickets[i].EventId);
                 var ticketAvailability = tickets[i].TicketAvailability;
                 @* <button class="seat available" data-ticket-id="@ticketId">
                     S-@(i + 1)
                 </button> *@
-                <button class="seat @(ticketAvailability == 0 ? "unavailable" : "available")" data-ticket-id="@ticketId" @(ticketAvailability == 0 ? "disabled" : "")>
+                <button class="seat @(ticketAvailability == 0 ? "unavailable" : "available")" 
+                data-ticket-id="@ticketId"
+                @(ticketAvailability == 0 ? "disabled" : "")>
                     S-@(i + 1)
                 </button>
             }
@@ -43,10 +43,10 @@
     }
 }
 <br />
+<br />
 <div class="text-center">
     @Html.ActionLink("Proceed To Checkout", "UpdateSeatStatus", "User", null, new { @class = "btn btn-success", @type = "button", id = "proceedButton" })
 </div>
-
 @section Scripts {
     <script>
         $(function () {
@@ -54,6 +54,7 @@
             $(".seat.available").click(function () {
                 $(this).toggleClass("selected");
                 var ticketId = $(this).data("ticket-id");
+             
                 if ($(this).hasClass("selected")) {
                     selectedTickets.push(ticketId);
                 } else {
@@ -68,7 +69,7 @@
                     $.ajax({
                         url: url,
                         type: "POST",
-                        data: {ticketIds: selectedTickets },
+                        data: { ticketIds: selectedTickets },
                         success: function (response) {
                             console.log(response);
                         },

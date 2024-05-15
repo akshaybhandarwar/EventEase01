@@ -1,4 +1,4 @@
-﻿@* using EventEase_01.ViewModels; *@
+﻿
 @model RegistrationModel
 
 
@@ -90,7 +90,6 @@
             <input type="password" id="password" asp-for="Password" />
             <span id="passwordError" style="color: red;"></span>
         </div>
-
         @if (TempData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger" role="alert">
