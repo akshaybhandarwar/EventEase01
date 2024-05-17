@@ -1,24 +1,16 @@
 ﻿@model EventEase_01.Models.Event
-
  @{
     ViewData["Title"] = "AdminDashboard";
 }
 <html>
-
 <h1>Admin Dashboard</h1>
-
-
 <head>
  <style>
-     
-
         .SearchBar {
             position: absolute;
             top: 5%;
             right: 5%;
         }
-
-
     </style>
 
 </head>
@@ -33,8 +25,6 @@
             <button type="submit" class="btn btn-primary">Manage Your Events</button>
         </form>
     </div>
-
-
             <h1>Upcoming Events </h1>
             @{
                 ViewBag.Title = "Events";
@@ -49,32 +39,27 @@
             {
                 @foreach (var item in events)
                 {
-                @* style = "max-width: 540px;" *@
+              
                 <div class="card h-100" >
                     <div class="row g-0">
                         <div class="col-md-4">
-@*                             <img src="@item.EventImageFileName" class="img-fluid rounded-start" alt="..." style="object-fit: cover;">
-                    *@  <img src="@item.EventImageFileName" class="img-fluid rounded-start" alt="..." style="object-fit: cover; height: 200px; width: 200px;">
+                     <img src="@item.EventImageFileName" class="img-fluid rounded-start" alt="..." style="object-fit: cover; height: 200px; width: 200px;">
 
                </div>
                         <div class="col-md-8">
                             <div class="card-body d-flex flex-column justify-content-between h-100">
                                 <h5 class="card-title">@item.EventName</h5>
-                                <h5 class="card-Date">@item.EventDate</h5>
+                               
                                 <h5 class="card-Desc" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">@item.EventDescription</h5>
-@*                                 <a href="/Event/EventDescription" class="btn btn-primary mt-auto">Book Tickets</a>*@
+                                <h5 class="card-Date">@item.EventDate</h5>                         
 
                       <a href="@Url.Action("EventDescription", "Event", new { eventId = item.EventId })" class="btn btn-primary mt-auto">View Event </a>
                          </div>
                         </div>
                     </div>
                 </div>
-
-              
                 }
-
             }
-
             else
             {
                 <p>No Events Found</p>

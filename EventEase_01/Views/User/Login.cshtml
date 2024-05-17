@@ -73,6 +73,12 @@
                 @TempData["SuccessMessage"]
             </div>
         }
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"] !!
+            </div>
+        }
         <form method="post">
             <div>
                 <label>Email:</label>

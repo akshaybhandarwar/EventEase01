@@ -25,15 +25,12 @@ namespace EventEase_01.Controllers
                                                 .Include(e => e.Venue);
             return View(await eventEase01Context.ToListAsync());
         }
-
-        // GET: AdminEvents/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var @event = await _context.Events
                 .Include(e => e.Category)
                 .Include(e => e.Venue)

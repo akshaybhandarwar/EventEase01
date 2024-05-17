@@ -265,3 +265,8 @@ C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\obj\Debug\net8.0\E
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\obj\Debug\net8.0\EventEase_01.genruntimeconfig.cache
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\obj\Debug\net8.0\ref\EventEase_01.dll
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\StackExchange.Redis.dll

@@ -1,0 +1,88 @@
+﻿@* @model string
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify OTP</title>
+</head>
+<body>
+    <h2>Verify OTP</h2>
+    <form asp-action="VerifyOTP" method="post">
+        <input type="hidden" name="GeneratedOTP" value="@Model" />
+        <label>OTP:</label>
+        <input type="text" name="EnteredOTP" />
+        <button type="submit">Verify OTP</button>
+    </form>
+</body>
+</html>
+ *@
+ @model string
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 50px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Verify OTP</h2>
+        <form asp-action="VerifyOTP" method="post">
+            <input type="hidden" name="GeneratedOTP" value="@Model" />
+            <label for="enteredOTP">Enter OTP:</label>
+            <input type="text" id="enteredOTP" name="EnteredOTP" placeholder="Enter your OTP" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
+

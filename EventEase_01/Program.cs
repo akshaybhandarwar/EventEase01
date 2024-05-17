@@ -1,6 +1,7 @@
 using EventEase_01.Models;
 using EventEase_01.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -14,16 +15,23 @@ namespace EventEase_01
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
-            
+
+        var builder = WebApplication.CreateBuilder(args);
+     
             builder.Services.AddControllersWithViews();
             builder.Services.AddSession();
 
             var provider = builder.Services.BuildServiceProvider();
             var config = provider.GetService<IConfiguration>();
+           
+            builder.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = config.GetConnectionString("RedisConnection");
+            });
             builder.Services.AddDbContext<EventEase01Context>(item => item.UseSqlServer(config.GetConnectionString("dbcs")));
             builder.Services.AddSingleton<AESEncryption>(provider => new AESEncryption(config["PasswordKey"]));
-
+            builder.Services.AddScoped<EmailService>();
+            builder.Services.AddScoped<OTPService>();
             builder.Services.AddScoped<UserRegistrations>();
             builder.Services.AddScoped<JwtToken>();
          
@@ -71,13 +79,11 @@ namespace EventEase_01
                 {
                     if (context.Request.Path.StartsWithSegments("/api"))
                     {
-                        // For API requests, return the unauthorized message
                         context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         await context.Response.WriteAsync("Please log in to access this resource.");
                     }
                     else
                     {
-                        // Redirect to the login page only if the user is not authenticated
                         string loginUrl = $"/User/Login?returnUrl={context.Request.Path.Value}&message=Please log in to access this resource.";
                         context.Response.Redirect(loginUrl);
                     }

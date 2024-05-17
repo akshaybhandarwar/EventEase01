@@ -9,6 +9,9 @@ using EventEase_01.ActionAttributes;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace EventEase_01.Controllers
 {
@@ -19,22 +22,23 @@ namespace EventEase_01.Controllers
         private readonly AESEncryption _encryptionService;
         private readonly UserRegistrations _registrationService;
         private readonly JwtToken _jwtToken;
-        
-        public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice, UserRegistrations registrationService,JwtToken jwtToken)
+        private readonly EmailService _emailService;
+        private readonly OTPService _otpService;
+        public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice, UserRegistrations registrationService,JwtToken jwtToken, EmailService emailService, OTPService otpService)
         {
             _config = config;
             _context = context;
             _encryptionService = encryptionservice;
             _registrationService = registrationService;
             _jwtToken = jwtToken;
+            _emailService = emailService;
+            _otpService= otpService;
         }
         [NoCache]
         public IActionResult Login()
         {
             return View();
         }
-
-
         [HttpGet]
         [NoCache]
         public IActionResult Logout()
@@ -91,7 +95,71 @@ namespace EventEase_01.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            TempData["UserEmail"] = email;
+            string otp = _otpService.GenerateOTP();
+
+            string subject = "Forgot Password OTP";
+            string body = $"Your OTP for Password Reset is: {otp}";
+            await _emailService.SendEmailAsync(email, subject, body);
+            return RedirectToAction("VerifyOTP", new { OTP=otp });
+        }
+        [HttpGet]
+        public IActionResult VerifyOTP(string otp)
+        {
+            Console.WriteLine("GET CALL:" + otp);
+           
+            return View(model:otp);
+        }
+        [HttpPost]
+        public IActionResult VerifyOTP(string GeneratedOTP, string EnteredOTP)
+        
+        {
+            Console.WriteLine("OTP from hidden field: " + GeneratedOTP);
+            Console.WriteLine("OTP from input field: " + EnteredOTP);
+            if (GeneratedOTP == EnteredOTP)
+            {
+                return RedirectToAction("ResetPassword");
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Invalid OTP. Please try again.";
+                return RedirectToAction("ForgotPassword");
+            }
+        }
+        [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ResetPassword(string newPassword)
+        {
+            string userEmail = TempData["UserEmail"] as string;
+            var user = _context.Users.FirstOrDefault(e=>e.UserEmail==userEmail);
+            Console.WriteLine(newPassword);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            string ResetPassKey = _config["PasswordKey"];
+            string ResetPasswordSalt = null;
+            var ResetPasswordHash = _encryptionService.Encrypt(newPassword, out ResetPasswordSalt, ResetPassKey);
+            user.PasswordHash = ResetPasswordHash;
+            user.PasswordSalt = ResetPasswordSalt;
+            _context.SaveChanges();
+            TempData["Success"] = "Password Changed Succesfully Please Login";
+            return RedirectToAction("Login", "User"); 
+        }
+       
         [HttpPost]
         [NoCache]
         public async Task<IActionResult> Registration(RegistrationModel model)
@@ -112,32 +180,75 @@ namespace EventEase_01.Controllers
             }
             return View(model);
         }
+  
         [Authorize(Roles ="user")]
         [NoCache]
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard([FromServices] IDistributedCache cache)
         {
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "User");
             }
+            var cachedData = await cache.GetStringAsync("DashboardData");
+            if (cachedData != null)
+            {
+                var Cachedevents = JsonConvert.DeserializeObject<List<Event>>(cachedData);
+                ViewData["Events"] = Cachedevents;
+                Console.WriteLine("Data Fetched From Redis ...");
+                return View();
+            }
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
+            await cache.SetStringAsync("DashboardData", JsonConvert.SerializeObject(events), new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10)
+            });
             ViewData["Events"] = events;
+            Console.WriteLine("Fetched Events from SQL Server..");
             return View();
         }
-  
-        [Authorize(Roles ="admin")]
+        //[Authorize(Roles ="admin")]
+        //[NoCache]
+        //[HttpGet]
+        //public IActionResult AdminDashboard()
+        //{
+        //    if (!User.Identity.IsAuthenticated)
+        //    {
+        //        return RedirectToAction("Login", "User");
+        //    }
+        //    var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
+        //    ViewData["Events"] = events;
+        //    return View();
+        //}
+
+        [Authorize(Roles = "admin")]
         [NoCache]
         [HttpGet]
-        public IActionResult AdminDashboard()
+        public async Task<IActionResult> AdminDashboard([FromServices] IDistributedCache cache)
         {
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "User");
             }
+            var cachedData = await cache.GetStringAsync("AdminDashboardData");
+            if (cachedData != null)
+            {
+                var Cachedevents = JsonConvert.DeserializeObject<List<Event>>(cachedData);
+                ViewData["Events"] = Cachedevents;
+                Console.WriteLine("Data Fetched From Redis ...");
+                return View();
+            }
+
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
+
+            await cache.SetStringAsync("AdminDashboardData", JsonConvert.SerializeObject(events), new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) 
+            });
             ViewData["Events"] = events;
+            Console.WriteLine("Data Fetched From SQL Server ...");
             return View();
         }
+
         [Authorize(Roles = "admin")]
         [HttpPost]
         [NoCache]
@@ -150,35 +261,26 @@ namespace EventEase_01.Controllers
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
             return View();
         }
-        public IActionResult SuperAdminDashboard()
+        public async Task<IActionResult> SuperAdminDashboard()
         {
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
+            Console.WriteLine("Data Fetched from SQL Server");
             return View();
         }
         public ActionResult ManageUser()
         {
             return View();
         }
-
         public ActionResult PaymentGateway()
         {
             return View();
         }
         public ActionResult UpdateSeatStatus(List<Guid> ticketIds)
         {
-           
-            
             foreach (var ticketId in ticketIds)
             {
-                Console.WriteLine("**********************");
-                Console.WriteLine(ticketId);
-            }
-            foreach (var ticketId in ticketIds)
-            {
-                
                 var ticket = _context.Tickets.FirstOrDefault(t => t.TicketId == ticketId);
-                
                 if (ticket != null)
                 {
                     
@@ -191,7 +293,7 @@ namespace EventEase_01.Controllers
         }
         public ActionResult SelectTickets(Guid eventId)
         {
-            //var selectedEvent = ViewData["Events"] as EventEase_01.Models.Event;
+            Console.WriteLine(eventId);
             var eventModel = _context.Events.FirstOrDefault(e => e.EventId == eventId);
             var ticket = _context.Tickets.Where(e => e.EventId == eventId).ToList();
 
@@ -203,7 +305,7 @@ namespace EventEase_01.Controllers
             var eventDetails = (from e in _context.Events
                                 join v in _context.Venues on e.VenueId equals v.VenueId
                                 where e.EventId == eventId
-                                select new { Event = e, VenueName = v.VenueName, VenueAddress = v.VenueAddress })
+                                select new { Event = e, VenueName = v.VenueName, VenueAddress = v.VenueAddress })  
                    .FirstOrDefault();
             if (eventDetails != null)
             {
@@ -215,4 +317,3 @@ namespace EventEase_01.Controllers
         }
     }
 }
-

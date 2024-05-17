@@ -125,7 +125,7 @@ namespace EventEase_01.Controllers
 
         public ActionResult ShowEvents()
         {
-            var events = _context.Events.ToList();
+            var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
             return View();
         }
