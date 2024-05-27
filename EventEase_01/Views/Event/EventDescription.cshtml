@@ -10,9 +10,15 @@
             margin-bottom: 20px;
         }
 
+
         .event-header {
             position: relative;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 300px; 
         }
+
 
             .event-header h3 {
                 background-color: rgba(0, 0, 0, 0.6);
@@ -26,10 +32,13 @@
             }
 
         .event-image {
-            width: 100%;
-            height: auto;
+            width: auto; 
+            height: auto; 
+            max-width: 100%; 
+            max-height: 100%; 
+           
         }
-
+ 
         .event-body {
             padding: 20px;
         }
@@ -92,12 +101,11 @@
         <br />
         <br />
         <h1 style="text-align: center; background-color:crimson">@eventDetails.EventName</h1>
-
         <br />
-        <div class="event-item">
+        <div class="event-item" >
             <div class="event-header">
+                <img src="@eventDetails.EventImageFileName"  class="event-image" alt="@eventDetails.EventName">
                 <h3>@eventDetails.EventName</h3>
-                <img src="@eventDetails.EventImageFileName" class="event-image" alt="@eventDetails.EventName">
             </div>
             <div class="event-body">
                 <p class="event-desc">@eventDetails.EventDescription</p>
@@ -106,17 +114,15 @@
                         <span class="detail-label">Event Date:</span>
                         <span class="detail-value">@eventDetails.EventDate</span>
                     </div>
-                    
                     <div>
                         <span class="detail-label">Venue:</span>
                         <span class="detail-value">@venuename</span>
                     </div>
-                    
                     <div>
                         <span class="detail-label">Venue Address:</span>
                         <span class="detail-value">@venueaddress</span>
                     </div>
-                   
+      
                     @if (ViewData["CountOfTickets"] != null)
                     {
                         var countOfTickets = ViewData["CountOfTickets"] as int?;
@@ -126,31 +132,9 @@
                         </div>
                     }
                 </div>
-@*                 <button onclick="location.href='@Url.Action("SelectTickets", "User")'" class="btn btn-success book-btn">Book Tickets</button>
- *@
                 <a href="@Url.Action("SelectTickets", "User", new { eventId = eventDetails.EventId })" class="btn btn-primary book-btn">Book Tickets</a>
             </div>
         </div>
     }
-@*     if(eventDetails!=null){
-    <div class="event-item">
-        <div>
-            <h3>@eventDetails.EventName</h3>
-            <img src="@eventDetails.EventImageFileName" class="card-img-top" alt="@eventDetails.EventName">
-            <div class="event-body">
-                <p class="event-desc">Event Description : @eventDetails.EventDescription</p>
-                    <p>Event Date : @eventDetails.EventDate</p>
-                    <p>Venue : @venuename</p>
-                    <p>Venue Address: @venueaddress</p>
-                    @if (ViewData["CountOfTickets"] != null)
-                    {
-                        var countOfTickets = ViewData["CountOfTickets"] as int?;
 
-                        <p>Number Of Tickets: @countOfTickets</p>
-                    }
-                <a href="@Url.Action("SelectTickets", "User", new { eventId = eventDetails.EventId })" class="btn btn-primary">Book Tickets</a>
-            </div>
-        </div>
-    </div>
-    } *@
 }

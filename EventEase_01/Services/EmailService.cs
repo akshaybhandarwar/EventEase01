@@ -14,6 +14,7 @@ namespace EventEase_01.Services
                 EnableSsl = true
             };
         }
+
         public async Task SendEmailAsync(string toEmail, string subject, string body)
         {
             var message = new MailMessage("eventease80@gmail.com", toEmail, subject, body);
@@ -22,4 +23,3 @@ namespace EventEase_01.Services
         }
     }
 }
-

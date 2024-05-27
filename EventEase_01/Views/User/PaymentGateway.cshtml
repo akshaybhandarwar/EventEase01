@@ -68,25 +68,56 @@
         <img src="/images/png-clipart-logo-american-express-payment-computer-icons-brand-american-express-blue-text-thumbnail.png" alt="American Express">
  
     </div>
-    <form>
+@*     <form>
         <label for="card-number">CARD NUMBER</label>
-        <input type="text" id="card-number" placeholder="Valid Card Number">
+        <input type="text" id="card-number" placeholder="Valid Card Number" required >
         <div class="expiry-cvv">
             <div>
                 <label for="expiration-date">EXPIRATION DATE</label>
-                <input type="text" id="expiration-date" placeholder="MM/YY">
+                <input type="date" id="expiration-date" placeholder="MM/YY" required>
             </div>
             <div>
                 <label for="cvv">CV CODE</label>
-                <input type="text" id="cvv" placeholder="CODE">
+                <input type="text" id="cvv" placeholder="CODE" required>
             </div>
         </div>
         <label for="coupon-code">COUPON CODE</label>
         <input type="text" id="coupon-code" placeholder="Optional">
-@*         <form method="post" action="@Url.Action("TicketConfirmation", "Ticket")">
+        <form method="post" action="@Url.Action("TicketConfirmation", "Ticket")">
             <button type="submit">Make Payment</button>
-        </form> *@
+        </form> 
         <a href="@Url.Action("TicketConfirmation", "Ticket")" class="btn btn-success mt-auto">Make Payment </a>
-
+    </form> *@
+    <form id="payment-form">
+        <label for="card-number">CARD NUMBER</label>
+        <input type="text" id="card-number" placeholder="Valid Card Number" required>
+        <div class="expiry-cvv">
+            <div>
+                <label for="expiration-date">EXPIRATION DATE</label>
+                <input type="date" id="expiration-date" placeholder="MM/YY" required>
+            </div>
+            <div>
+                <label for="cvv">CV CODE</label>
+                <input type="text" id="cvv" placeholder="CODE" required>
+            </div>
+        </div>
+        <label for="coupon-code">COUPON CODE</label>
+        <input type="text" id="coupon-code" placeholder="Optional">
+        <button type="submit" class="btn btn-success mt-auto">
+            <a href="@Url.Action("TicketConfirmation", "Ticket")" class="btn btn-success mt-auto">Make Payment </a>
+        </button>
     </form>
+
 </div>
+<script>
+    document.getElementById("payment-form").addEventListener("submit", function(event) {
+        var form = event.target;
+        var cardNumber = form.querySelector("#card-number").value;
+        var expirationDate = form.querySelector("#expiration-date").value;
+        var cvv = form.querySelector("#cvv").value;
+        if (!cardNumber || !expirationDate || !cvv) {
+            event.preventDefault();
+            alert("Please fill out all required fields.");
+        }
+    });
+</script>

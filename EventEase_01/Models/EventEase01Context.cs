@@ -88,6 +88,7 @@ public partial class EventEase01Context : DbContext
             entity.Property(e => e.EventId)
                 .HasDefaultValueSql("(newid())")
                 .HasColumnName("Event_ID");
+            entity.Property(e => e.EventCity).HasColumnName("Event_City");
             entity.Property(e => e.CategoryId).HasColumnName("Category_ID");
             entity.Property(e => e.EventDate).HasColumnName("Event_Date");
             entity.Property(e => e.EventDescription).HasColumnName("Event_Description");

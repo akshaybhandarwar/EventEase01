@@ -1,7 +1,6 @@
-﻿ @{
+﻿@*  @{
     @model EventEase_01.Models.loginModel
    
-
     <!DOCTYPE html>
     <html>
     <head>
@@ -73,12 +72,19 @@
                 @TempData["SuccessMessage"]
             </div>
         }
+        </div>
+        
         @if (TempData["Success"] != null)
         {
             <div class="alert alert-success">
                 @TempData["Success"] !!
             </div>
         }
+       @if (!string.IsNullOrEmpty(Model.ToString())){
+         <div>
+            <p>@Model</p> 
+        </div>
+       }
         <form method="post">
             <div>
                 <label>Email:</label>
@@ -96,9 +102,116 @@
             <a class="fgp" href="/User/ForgotPassword">Forget Password </a>
             
         </form>
+
        
     </body>
+
     </html>
 
 }
+                 *@
 
+                @model EventEase_01.Models.loginModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('../images/reg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: red;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <h2>Login</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+@* 
+
+    @{
+        string msg = "";
+        if (Context.Request.Query.ContainsKey("msg"))
+        {
+            msg = System.Web.HttpUtility.UrlDecode(Context.Request.Query["msg"]);
+        }
+    }
+
+    @if (!string.IsNullOrEmpty(msg))
+    {
+        <p>@msg</p>
+    } *@
+
+    <form method="post">
+        <div>
+            <label>Email:</label>
+            <input type="email" asp-for="Email" />
+        </div>
+        <br />
+        <div>
+            <label>Password:</label>
+            <input type="password" asp-for="Password" />
+        </div>
+        <br />
+        <button type="submit">Login</button>
+        <br />
+
+        <a class="fgp" href="/User/ForgotPassword">Forget Password </a>
+    </form>
+</body>
+</html>

@@ -1,15 +1,13 @@
 ﻿@using Microsoft.EntityFrameworkCore
  @model EventEase_01.Models.EventModel 
-@*  @model EventModel *@
-
 @{
     ViewData["Title"] = "Adding A New Event ";
 }
 <head>
     <style>
         body {
-            background-color: black; /* Set a light background color for the whole page */
-            color: #fff; /* Set text color to white */
+            background-color: black; 
+            color: #fff;
         }
 
         .form-group {
@@ -18,23 +16,23 @@
 
         label {
             font-weight: bold;
-            color: #fff; /* Set label text color to white */
+            color: #fff; 
         }
 
         .btn-primary {
-            background-color: #dc3545; /* Red background color */
+            background-color: #dc3545; 
             border-color: #dc3545;
-            color: #fff; /* White text color */
+            color: #fff; 
         }
 
             .btn-primary:hover {
-                background-color: #c82333; /* Darker red on hover */
+                background-color: #c82333; 
                 border-color: #bd2130;
             }
 
             .btn-primary:focus,
             .btn-primary.focus {
-                box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5); /* Outline color on focus */
+                box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5); 
             }
 
         .row {
@@ -55,20 +53,19 @@
         }
 
             .button-container .btn {
-                flex: 0 0 48%; /* Adjust width of buttons */
+                flex: 0 0 48%;
             }
     </style>
-
 </head>
 <div class="row">
     <form class="col-md-4" asp-controller="Venues" asp-action="Create" method="post">
         <div class="form-group">
-            <input type="submit" formmethod="post" value="Add a New Venue" class="btn btn-primary" />
+            <input type="submit" formmethod="post" value="Manage Venues " class="btn btn-primary" />
         </div>
     </form>
     <form class="col-md-4" asp-controller="Categories" asp-action="Create" method="post">
         <div class="form-group">
-            <input type="submit" formmethod="post" value="Add a New Category for Event" class="btn btn-primary" />
+            <input type="submit" formmethod="post" value="Manage Categories" class="btn btn-primary" />
         </div>
     </form>
 </div>
@@ -80,13 +77,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="EventName" class="control-label"></label>
-                <input asp-for="EventName" class="form-control" />
+                <input asp-for="EventName" class="form-control" required/>
                 <span asp-validation-for="EventName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EventDescription" class="control-label"></label>
-                <input asp-for="EventDescription" class="form-control" />
+                <input asp-for="EventDescription" class="form-control" required />
                 <span asp-validation-for="EventDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventCity" class="control-label"></label>
+                <input asp-for="EventCity" class="form-control" required />
+                <span asp-validation-for="EventCity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.EventImage, htmlAttributes: new { @class = "control-label" })
@@ -97,7 +99,7 @@
 
             <div class="form-group">
                 <label asp-for="EventDate" class="control-label"></label>
-                <input asp-for="EventDate" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                <input asp-for="EventDate" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" required />
                 <span asp-validation-for="EventDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -155,12 +157,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="NumberOfTickets" class="control-label"></label>
-                <input asp-for="NumberOfTickets" class="form-control" />
+                <input asp-for="NumberOfTickets" class="form-control" required />
                 <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TicketPrice" class="control-label"></label>
-                <input asp-for="TicketPrice" class="form-control" />
+                <input asp-for="TicketPrice" class="form-control" required />
                 <span asp-validation-for="TicketPrice" class="text-danger"></span>
             </div>
 

@@ -1,5 +1,4 @@
-﻿
-using EventEase_01.Models;
+﻿using EventEase_01.Models;
 using EventEase_01.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -12,6 +11,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using RabbitMQ.Client.Events;
+using RabbitMQ.Client;
+using System.Text;
+
 
 namespace EventEase_01.Controllers
 {
@@ -24,7 +28,10 @@ namespace EventEase_01.Controllers
         private readonly JwtToken _jwtToken;
         private readonly EmailService _emailService;
         private readonly OTPService _otpService;
-        public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice, UserRegistrations registrationService,JwtToken jwtToken, EmailService emailService, OTPService otpService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        //private readonly RabbitMQService _rabbitMQService;
+
+        public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice, UserRegistrations registrationService,JwtToken jwtToken, EmailService emailService, OTPService otpService, IHttpContextAccessor httpContextAccessor)
         {
             _config = config;
             _context = context;
@@ -32,11 +39,14 @@ namespace EventEase_01.Controllers
             _registrationService = registrationService;
             _jwtToken = jwtToken;
             _emailService = emailService;
-            _otpService= otpService;
+            _otpService = otpService;
+            _httpContextAccessor = httpContextAccessor;
+            //_rabbitMQService = rabbitMQService;
         }
         [NoCache]
-        public IActionResult Login()
+        public IActionResult Login(string msg)
         {
+            string m = msg;
             return View();
         }
         [HttpGet]
@@ -49,15 +59,14 @@ namespace EventEase_01.Controllers
         }
         [HttpPost]
         [NoCache]
-        public IActionResult Login(loginModel login, string returnUrl)
+        public IActionResult Login(loginModel login, string returnUrl,string msg)
         {
             var myUser = _context.Users.FirstOrDefault(x => x.UserEmail == login.Email);
-
             if (myUser != null)
             {
+                string m = msg;
                 string key = _config["PasswordKey"];
                 string encryptedPassword = _encryptionService.AuthEncrypt(login.Password, myUser.PasswordSalt, key);
-
                 if (encryptedPassword == myUser.PasswordHash)
                 {
                     string token = _jwtToken.GenerateToken(myUser);
@@ -100,13 +109,11 @@ namespace EventEase_01.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(string email)
         {
             TempData["UserEmail"] = email;
             string otp = _otpService.GenerateOTP();
-
             string subject = "Forgot Password OTP";
             string body = $"Your OTP for Password Reset is: {otp}";
             await _emailService.SendEmailAsync(email, subject, body);
@@ -114,9 +121,7 @@ namespace EventEase_01.Controllers
         }
         [HttpGet]
         public IActionResult VerifyOTP(string otp)
-        {
-            Console.WriteLine("GET CALL:" + otp);
-           
+        {           
             return View(model:otp);
         }
         [HttpPost]
@@ -143,6 +148,7 @@ namespace EventEase_01.Controllers
         [HttpPost]
         public IActionResult ResetPassword(string newPassword)
         {
+            
             string userEmail = TempData["UserEmail"] as string;
             var user = _context.Users.FirstOrDefault(e=>e.UserEmail==userEmail);
             Console.WriteLine(newPassword);
@@ -159,7 +165,6 @@ namespace EventEase_01.Controllers
             TempData["Success"] = "Password Changed Succesfully Please Login";
             return RedirectToAction("Login", "User"); 
         }
-       
         [HttpPost]
         [NoCache]
         public async Task<IActionResult> Registration(RegistrationModel model)
@@ -171,16 +176,18 @@ namespace EventEase_01.Controllers
                 if (result)
                 {
                     TempData["SuccessMessage"] = "Registration successful! Please log in.";
-                    return RedirectToAction("Login");
+                    string success = "Registration Succesfull PLease Login Check";
+                    //string message = _httpContextAccessor.HttpContext.Session.GetString("Message");
+
+                    return RedirectToAction("Login", new { msg = success });
                 }
                 else
                 {
                     TempData["ErrorMessage"] = "Registration failed. Email ID already exists. Please register with a different email ID.";
                 }
             }
-            return View(model);
+            return View(model );
         }
-  
         [Authorize(Roles ="user")]
         [NoCache]
         public async Task<IActionResult> Dashboard([FromServices] IDistributedCache cache)
@@ -206,20 +213,6 @@ namespace EventEase_01.Controllers
             Console.WriteLine("Fetched Events from SQL Server..");
             return View();
         }
-        //[Authorize(Roles ="admin")]
-        //[NoCache]
-        //[HttpGet]
-        //public IActionResult AdminDashboard()
-        //{
-        //    if (!User.Identity.IsAuthenticated)
-        //    {
-        //        return RedirectToAction("Login", "User");
-        //    }
-        //    var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
-        //    ViewData["Events"] = events;
-        //    return View();
-        //}
-
         [Authorize(Roles = "admin")]
         [NoCache]
         [HttpGet]
@@ -244,11 +237,12 @@ namespace EventEase_01.Controllers
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) 
             });
+           
             ViewData["Events"] = events;
+            
             Console.WriteLine("Data Fetched From SQL Server ...");
             return View();
         }
-
         [Authorize(Roles = "admin")]
         [HttpPost]
         [NoCache]
@@ -259,6 +253,7 @@ namespace EventEase_01.Controllers
                 return RedirectToAction("Login", "User");
             }
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
+            ViewData["Events"] = events;
             return View();
         }
         public async Task<IActionResult> SuperAdminDashboard()
@@ -276,8 +271,27 @@ namespace EventEase_01.Controllers
         {
             return View();
         }
+        //public void ConsumeTicketUpdateMessages()
+        //{
+        //    var factory = new ConnectionFactory() { HostName = "5614-LAP-0344" };
+        //    using (var connection = factory.CreateConnection())
+        //    using (var channel = connection.CreateModel())
+        //    {
+        //        channel.QueueDeclare(queue: "ticket_updates", durable: true, exclusive: false, autoDelete: false, arguments: null);
+        //        var consumer = new EventingBasicConsumer(channel);
+        //        consumer.Received += (model, ea) =>
+        //        {
+        //            var body = ea.Body.ToArray();
+        //            var message = Encoding.UTF8.GetString(body);
+        //            var ticketIds = JsonConvert.DeserializeObject<List<Guid>>(message);
+        //            UpdateSeatStatus(ticketIds);
+        //        };
+        //        channel.BasicConsume(queue: "ticket_updates", autoAck: true, consumer: consumer);
+        //    }
+        //}
         public ActionResult UpdateSeatStatus(List<Guid> ticketIds)
         {
+            //_rabbitMQService.PublishBatch(ticketIds);
             foreach (var ticketId in ticketIds)
             {
                 var ticket = _context.Tickets.FirstOrDefault(t => t.TicketId == ticketId);
@@ -296,10 +310,11 @@ namespace EventEase_01.Controllers
             Console.WriteLine(eventId);
             var eventModel = _context.Events.FirstOrDefault(e => e.EventId == eventId);
             var ticket = _context.Tickets.Where(e => e.EventId == eventId).ToList();
-
+            Console.WriteLine(eventModel.NumberOfTickets);
             ViewData["Tickets"] = ticket;
             return View(eventModel);
         }
+
         public ActionResult EventDescription(Guid eventId)
         {
             var eventDetails = (from e in _context.Events

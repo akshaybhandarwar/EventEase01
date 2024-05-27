@@ -2,6 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace EventEase_01.Models
 {
@@ -10,7 +11,7 @@ namespace EventEase_01.Models
         public string EventName { get; set; }
 
         public string EventDescription { get; set; }
-
+        public string EventCity { get; set; }
         public DateTime EventDate { get; set; }
         //public string VenueName { get; set; }   
         public Guid VenueId { get; set; }

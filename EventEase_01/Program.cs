@@ -15,10 +15,12 @@ namespace EventEase_01
     {
         public static void Main(string[] args)
         {
-
+          
         var builder = WebApplication.CreateBuilder(args);
      
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddSession();
 
             var provider = builder.Services.BuildServiceProvider();
@@ -34,7 +36,8 @@ namespace EventEase_01
             builder.Services.AddScoped<OTPService>();
             builder.Services.AddScoped<UserRegistrations>();
             builder.Services.AddScoped<JwtToken>();
-         
+            //builder.Services.AddSingleton<RabbitMQService>();
+
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -74,7 +77,7 @@ namespace EventEase_01
             app.Use(async (context, next) =>
             {
                 await next();
-
+                
                 if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized && !context.User.Identity.IsAuthenticated)
                 {
                     if (context.Request.Path.StartsWithSegments("/api"))
@@ -89,27 +92,14 @@ namespace EventEase_01
                     }
                 }
             });
-
-
             app.UseRouting();
             app.UseAuthentication();
-
             app.UseAuthorization();
-
-
-
-
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            //app.MapControllerRoute(
-            //name: "default",
-            //pattern: "{controller}/{action}/{id?}",
-            //defaults: new { controller = "UserController", action = "Login" });
-
-
             app.Run();
         }
     }
 }
+

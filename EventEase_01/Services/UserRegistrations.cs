@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EventEase_01.Services
 {
-
     public class UserRegistrations
     {
         private readonly EventEase01Context _context;
@@ -17,7 +16,6 @@ namespace EventEase_01.Services
             _config = config;
             _encryptionService = encryptionService;
         }
-
         public async Task<bool> RegisterUserAsync(RegistrationModel model)
         {
             if (_context.Users.Any(u => u.UserEmail == model.Email))
@@ -26,6 +24,7 @@ namespace EventEase_01.Services
             }
             string PassKey = _config["PasswordKey"];
             string PasswordSalt = null;
+            string userRole = "user";
             var PasswordHash = _encryptionService.Encrypt(model.Password, out PasswordSalt, PassKey);
             User u1 = new User
             {
@@ -33,7 +32,7 @@ namespace EventEase_01.Services
                 UserEmail = model.Email,
                 PasswordHash = PasswordHash,
                 PasswordSalt = PasswordSalt,
-                UserRole="user"
+                UserRole=userRole
             };
             await _context.Users.AddAsync(u1);
             await _context.SaveChangesAsync();

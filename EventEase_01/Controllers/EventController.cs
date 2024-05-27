@@ -84,7 +84,9 @@ namespace EventEase_01.Controllers
                     VenueId = venue.VenueId,
                     CategoryId = category.CategoryId,
                     EventImageFileName = imagePath,
-                    NumberOfTickets = model.NumberOfTickets
+                    NumberOfTickets = model.NumberOfTickets,
+                    EventCity=model.EventCity
+                    
                 };
                 await _context.Events.AddAsync(e1);
                 await _context.SaveChangesAsync();
@@ -114,6 +116,13 @@ namespace EventEase_01.Controllers
             ViewData["Events"] = events;
             return View("AdminDashboard");
         }
+        public ActionResult GetByLocation(string city)
+        {
+            string selectedCity = HttpContext.Request.Query["city"];
+            var events=_context.Events.Where(e=>e.EventCity==selectedCity).ToList();
+            ViewData["Events"] = events;
+            return View();
+        }
         [HttpGet]
         public ActionResult AdminDashboard( )
         {
@@ -125,7 +134,7 @@ namespace EventEase_01.Controllers
 
         public ActionResult ShowEvents()
         {
-            var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
+            var events = _context.Events.Where(e => e.EventCity != null &&  e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
             return View();
         }
@@ -137,21 +146,21 @@ namespace EventEase_01.Controllers
         public ActionResult Sports()
         {
             var categoryId = new Guid("F965E862-DBE5-4661-9A80-6CA53DC7247E");
-            var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
+            var events = _context.Events.Where(e => e.CategoryId == categoryId &&  e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
             return View("ShowEvents");
         }
         public ActionResult Dance()
         {
             var categoryId = new Guid("4DA741ED-C888-4D66-B668-29D098C66DF4");
-            var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
+            var events = _context.Events.Where(e => e.CategoryId == categoryId && e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
             return View("ShowEvents");
         }
         public ActionResult Music()
         {
             var categoryId = new Guid("C130AA81-62DD-40A6-8413-A22D2E72B365");
-            var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
+            var events = _context.Events.Where(e => e.CategoryId == categoryId && e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
             foreach(var item in events)
             {
@@ -162,14 +171,14 @@ namespace EventEase_01.Controllers
         public ActionResult Celebration()
         {
             var categoryId = new Guid("E5F54FF5-B244-4B48-B8EC-C2007216A533");
-            var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
+            var events = _context.Events.Where(e => e.CategoryId == categoryId && e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
             return View("ShowEvents");
         }
         public ActionResult Meditation()
         {
             var categoryId = new Guid("A49BF1E0-6DDC-4282-92D2-6642BDD65469");
-            var events = _context.Events.Where(e => e.CategoryId == categoryId).ToList();
+            var events = _context.Events.Where(e => e.CategoryId == categoryId && e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
             return View("ShowEvents");
         }

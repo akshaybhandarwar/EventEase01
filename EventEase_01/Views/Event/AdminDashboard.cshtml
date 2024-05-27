@@ -64,7 +64,9 @@
                                 <h5 class="card-title">@item.EventName</h5>
                                 <h5 class="card-Desc" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">@item.EventDescription</h5>
                                 <h5 class="card-Date">@item.EventDate</h5>
-                                <a href="#" class="btn btn-primary mt-auto">Book Tickets</a>
+@*                                 <a href="" class="btn btn-primary mt-auto">Book Tickets</a>
+ *@                                <a href="@Url.Action("EventDescription", "Event", new { eventId = item.EventId })" class="btn btn-danger mt-auto">View Event </a>
+
                             </div>
                         </div>
                     </div>

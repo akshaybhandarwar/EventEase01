@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lrSnA89kNU6EvphMo9CdEXmpxEvSx3bGc3IxTTbbRLozd0+nnxqa4kmMzXwErANiSnhqcu3f/1tTV9Oad2Xpxw==",
+  "dgSpecHash": "qjSMmgfdUacZ4CP0FRyQXfRX0kSm+e0CkavapHAE9JYdMMTqiiUT6gd3Cx4QaqNVLR5QPDBl9PWtisUs57VAjA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\EventEase_01.csproj",
   "expectedPackageFiles": [
@@ -156,6 +156,7 @@
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+    "C:\\Users\\Coditas-Admin\\.nuget\\packages\\rabbitmq.client\\6.8.1\\rabbitmq.client.6.8.1.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\stackexchange.redis\\2.7.27\\stackexchange.redis.2.7.27.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
@@ -175,7 +176,7 @@
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.io.filesystem.accesscontrol\\5.0.0\\system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
-    "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\Coditas-Admin\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",

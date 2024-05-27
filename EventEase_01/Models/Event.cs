@@ -12,17 +12,17 @@ public partial class Event
     public string? EventName { get; set; }
 
     public string? EventDescription { get; set; }
+    public string? EventCity { get; set; }
+
 
     public DateTime? EventDate { get; set; }
 
     public Guid? VenueId { get; set; }
-    //public string VenueName { get; set; }   
     public Guid? CategoryId { get; set; }
     public virtual Category? Category { get; set; }
     public string? EventImageFileName { get; set; }
     public int NumberOfTickets { get; set; } 
-    //[NotMapped]
-    //public IFormFile? EventImage { get; set; }
+ 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     public virtual Venue? Venue { get; set; }
 }

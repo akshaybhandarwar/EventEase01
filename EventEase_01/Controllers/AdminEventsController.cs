@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventEase_01.Models;
+using Humanizer.Localisation;
 
 namespace EventEase_01.Controllers
 {
@@ -74,7 +75,31 @@ namespace EventEase_01.Controllers
             {
                 try
                 {
-                    _context.Update(@event);
+                    _context.Entry(@event).State = EntityState.Detached;
+                    var originalEvent = await _context.Events.FindAsync(id);
+           
+                    if (originalEvent.NumberOfTickets != @event.NumberOfTickets)
+                    {
+                        var tickets = _context.Tickets.Where(t => t.EventId == id).ToList();
+                      
+                        for (int i = tickets.Count; i < @event.NumberOfTickets; i++)
+                        {
+                            var newTicket = new Ticket
+                            {
+                                EventId = id,
+                                TicketAvailability = 1 
+                                                      
+                            };
+                            _context.Tickets.Add(newTicket);
+                        }
+                    }
+                    originalEvent.EventName = @event.EventName;
+                    originalEvent.EventDescription = @event.EventDescription;
+                    originalEvent.EventDate = @event.EventDate;
+                    originalEvent.VenueId = @event.VenueId;
+                    originalEvent.CategoryId = @event.CategoryId;
+                    originalEvent.EventImageFileName = @event.EventImageFileName;
+                    originalEvent.NumberOfTickets = @event.NumberOfTickets;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -107,14 +132,26 @@ namespace EventEase_01.Controllers
                 .Include(e => e.Category)
                 .Include(e => e.Venue)
                 .FirstOrDefaultAsync(m => m.EventId == id);
+
             if (@event == null)
             {
                 return NotFound();
             }
 
-            return View(@event);
-        }
+            var tickets = await _context.Tickets
+                .Where(t => t.EventId == id)
+                .ToListAsync();
 
+            if (tickets.Any())
+            {
+                _context.Tickets.RemoveRange(tickets);
+                await _context.SaveChangesAsync();
+            }
+            _context.Events.Remove(@event);
+            await _context.SaveChangesAsync();
+            return View(@event);
+            //return RedirectToAction(nameof(Index));
+        }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -122,13 +159,12 @@ namespace EventEase_01.Controllers
             var @event = await _context.Events.FindAsync(id);
             if (@event != null)
             {
+
                 _context.Events.Remove(@event);
             }
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool EventExists(Guid id)
         {
             return _context.Events.Any(e => e.EventId == id);

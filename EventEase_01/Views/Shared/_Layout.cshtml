@@ -13,13 +13,18 @@
             position: relative;
             z-index: 1;
         }
+
+        .location {
+            margin-right:10px;
+        }
+
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/Home/Index">EventEase </a>
+                <a class="navbar-brand" href="/Home/Index"><i class="bi bi-funnel"></i> EventEase </a>
                 @{
                     string homeLink = "/";
                     if (User.IsInRole("admin"))
@@ -39,7 +44,7 @@
                         homeLink = "/Event/ShowEvents";
                     }
                 }
-                <a class="navbar-brand" href="@homeLink">Home</a>
+                <a class="navbar-brand" href="@homeLink"><i class="bi bi-house"></i> Home</a>
            
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -53,30 +58,65 @@
                               <i class="bi bi-person-circle"></i> User Profile 
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/User/Registration">Sign Up </a></li>
-                                <li><a class="dropdown-item" href="/User/Login">Login</a></li>
-                                <li><a class="dropdown-item" href="/User/Logout">Logout</a></li>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                 
+                                    <li><a class="dropdown-item" href="/User/Registration">Sign Up</a></li>
+                                    <li><a class="dropdown-item" href="/User/Login">Login</a></li>
+                                }
+                                else
+                                {
+                                    <li><a class="dropdown-item" href="/User/Logout">Logout</a></li>
+                                }
                             </ul>
+
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class=" SearchBar ">
+            <div class="location">
                 <div class="btn-group">
                     <button asp-for="result" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Search Events By Category
+                        <i class="bi bi-geo-alt-fill"></i>
+
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/Event/ShowEvents">Show All Events  </a></li>
-                        <li><a class="dropdown-item" href="/Event/Sports">Sports </a></li>
-                        <li><a class="dropdown-item" href="/Event/Dance">Dance</a></li>
-                        <li><a class="dropdown-item" href="/Event/Celebration">Celebration</a></li>
-                        <li><a class="dropdown-item" href="/Event/Music">Music</a></li>
-                        <li><a class="dropdown-item" href="/Event/Meditation">Meditation</a></li>
+                        <li><a class="dropdown-item" href="/Event/GetByLocation?city=Pune">Pune</a></li>
+                        <li><a class="dropdown-item" href="/Event/GetByLocation?city=Bangalore">Bangalore</a></li>
+                        <li><a class="dropdown-item" href="/Event/GetByLocation?city=Mumbai">Mumbai</a></li>
+                        <li><a class="dropdown-item" href="/Event/GetByLocation?city=Delhi">Delhi</a></li>
+                        <li><a class="dropdown-item" href="/Event/GetByLocation?city=Chennai">Chennai</a></li>
+                        <li><a class="dropdown-item" href="/Event/GetByLocation?city=Goa">Goa</a></li>
                     </ul>
                 </div>
+            </div> 
+            <div class="navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <div class="d-flex">
+                            <div class="SearchBar me-2">
+                                <div class="btn-group">
+                                    <button asp-for="result" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Search Events By Category
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="/Event/ShowEvents">Show All Events  </a></li>
+                                        <li><a class="dropdown-item" href="/Event/Sports">Sports </a></li>
+                                        <li><a class="dropdown-item" href="/Event/Dance">Dance</a></li>
+                                        <li><a class="dropdown-item" href="/Event/Celebration">Celebration</a></li>
+                                        <li><a class="dropdown-item" href="/Event/Music">Music</a></li>
+                                        <li><a class="dropdown-item" href="/Event/Meditation">Meditation</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                     
+                        </div>
+                    </li>
+                </ul>
             </div>
+
         </nav>
     </header>
 

@@ -38,6 +38,9 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.UserId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <button onclick="location.href='@Url.Action("Edit", "SuperAdmin", new { id =Model.UserId})'">Edit</button>
+   @*  <a asp-action="Edit"asp-route-id="@Model?.UserId">Edit</a>  *@|
+    <button onclick="location.href='@Url.Action("Index", "SuperAdmin", new { id =Model.UserId})'">Back To Users</button>
+
+  @*   <a asp-action="Index">Back to List</a> *@
 </div>

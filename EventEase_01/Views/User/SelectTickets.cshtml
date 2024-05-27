@@ -17,31 +17,31 @@
 <h2>@(Model?.EventName ?? "Event Name")</h2>
 @if (Model?.NumberOfTickets != null)
 {
-
     var tickets = ViewData["Tickets"] as List<Ticket>;
-    if (tickets != null && tickets.Count >= Model.NumberOfTickets)
+    if (tickets != null )
     {
-        int vr = Math.Min(Model.NumberOfTickets, tickets.Count);
         <div class="seat-container">
-            @for (int i = 0; i <vr; i++)
+            @for (int i = 0; i <Model.NumberOfTickets; i++)
             {
+                if (i < tickets.Count)
+                {
                 var ticketId = tickets[i].TicketId;
                 var ticketAvailability = tickets[i].TicketAvailability;
-                @* <button class="seat available" data-ticket-id="@ticketId">
-                    S-@(i + 1)
-                </button> *@
                 <button class="seat @(ticketAvailability == 0 ? "unavailable" : "available")" 
                 data-ticket-id="@ticketId"
                 @(ticketAvailability == 0 ? "disabled" : "")>
                     S-@(i + 1)
                 </button>
             }
-        </div>
-    }
     else
     {
-        <p>There are not enough tickets available.</p>
+            <button class="seat unavailable" disabled>
+                S-@(i+1)
+            </button>
     }
+    }
+        </div>
+}
 }
 <br />
 <br />

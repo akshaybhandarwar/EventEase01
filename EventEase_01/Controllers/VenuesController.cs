@@ -17,12 +17,11 @@ namespace EventEase_01.Controllers
         {
             _context = context;
         }
-        // GET: Venues
+       
         public async Task<IActionResult> Index()
         {
             return View(await _context.Venues.ToListAsync());
         }
-        // GET: Venues/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -45,10 +44,8 @@ namespace EventEase_01.Controllers
         {
             return View();
         }
-        // POST: Venues/Create
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("VenueId,VenueName,VenueAddress,VenueCapacity")] Venue venue)
         {
             if (ModelState.IsValid)
@@ -60,22 +57,6 @@ namespace EventEase_01.Controllers
             }
             return View(venue);
         }
-
-
-        //[HttpPost]
-        ////[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(VenueModel venue)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //venue.VenueId = Guid.NewGuid();
-        //        _context.Add(venue);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(venue);
-        //}
-        // GET: Venues/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -91,7 +72,6 @@ namespace EventEase_01.Controllers
             return View(venue);
         }
 
-        // POST: Venues/Edit/5
  
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -124,7 +104,6 @@ namespace EventEase_01.Controllers
             }
             return View(venue);
         }
-        // GET: Venues/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -142,7 +121,6 @@ namespace EventEase_01.Controllers
             return View(venue);
         }
 
-        // POST: Venues/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

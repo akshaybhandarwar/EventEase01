@@ -38,7 +38,6 @@ namespace EventEase_01.Services
                 return Convert.ToBase64String(encryptedData);
             }
         }
-    
         public string AuthEncrypt(string password, in string iv, string key)
         {
             using (Aes aes = Aes.Create())

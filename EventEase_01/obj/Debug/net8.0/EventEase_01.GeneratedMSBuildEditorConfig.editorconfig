@@ -66,26 +66,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/ClonedAdminEvent/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xvbmVkQWRtaW5FdmVudFxDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/ClonedAdminEvent/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xvbmVkQWRtaW5FdmVudFxEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/ClonedAdminEvent/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xvbmVkQWRtaW5FdmVudFxEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/ClonedAdminEvent/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xvbmVkQWRtaW5FdmVudFxFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/ClonedAdminEvent/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xvbmVkQWRtaW5FdmVudFxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/Event/AdminAddEvents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcQWRtaW5BZGRFdmVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -96,6 +76,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/Event/EventDescription.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRXZlbnREZXNjcmlwdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/Event/GetByLocation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcR2V0QnlMb2NhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Coditas-Admin/source/repos/EventEase_01/EventEase_01/Views/Event/GetEvent.cshtml]
