@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventEase_01.Models;
 using Humanizer.Localisation;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace EventEase_01.Controllers
 {
@@ -43,7 +44,6 @@ namespace EventEase_01.Controllers
 
             return View(@event);
         }
-       
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -149,12 +149,13 @@ namespace EventEase_01.Controllers
             }
             _context.Events.Remove(@event);
             await _context.SaveChangesAsync();
+           
             return View(@event);
             //return RedirectToAction(nameof(Index));
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id, [FromServices] IDistributedCache cache)
         {
             var @event = await _context.Events.FindAsync(id);
             if (@event != null)
@@ -163,6 +164,8 @@ namespace EventEase_01.Controllers
                 _context.Events.Remove(@event);
             }
             await _context.SaveChangesAsync();
+             cache.Remove("DashboardData");
+             cache.Remove("AdminDashboardData");
             return RedirectToAction(nameof(Index));
         }
         private bool EventExists(Guid id)

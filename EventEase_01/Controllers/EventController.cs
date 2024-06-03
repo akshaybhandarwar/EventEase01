@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using EventEase_01.ViewModels;
 using System;
 using System.Net.Sockets;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace EventEase_01.Controllers
 {
@@ -63,7 +64,7 @@ namespace EventEase_01.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> AdminAddEvents(EventModel model)
+        public async Task<ActionResult> AdminAddEvents(EventModel model, [FromServices] IDistributedCache cache)
         {
             var venue = _context.Venues
                    .Where(e => e.VenueId == model.VenueId)
@@ -71,7 +72,6 @@ namespace EventEase_01.Controllers
             var category = _context.Categories.
                 Where(e => e.CategoryId == model.CategoryId).
                 FirstOrDefault();
-
             string imagePath = await UploadImage(model.EventImage);
 
             if (venue != null && category != null)
@@ -90,6 +90,9 @@ namespace EventEase_01.Controllers
                 };
                 await _context.Events.AddAsync(e1);
                 await _context.SaveChangesAsync();
+                cache.Remove("DashboardData");
+                cache.Remove("AdminDashboardData");
+                
             }
             var addedEvent = await _context.Events
                        .Where(e => e.EventName == model.EventName)
@@ -111,6 +114,7 @@ namespace EventEase_01.Controllers
                 }
             }
             await _context.SaveChangesAsync();
+           
             TempData["EventAddedMessage"] = "The Event is added. It will be live in a moment. ";
             var events = _context.Events.ToList();
             ViewData["Events"] = events;
@@ -119,7 +123,7 @@ namespace EventEase_01.Controllers
         public ActionResult GetByLocation(string city)
         {
             string selectedCity = HttpContext.Request.Query["city"];
-            var events=_context.Events.Where(e=>e.EventCity==selectedCity).ToList();
+            var events=_context.Events.Where(e=>e.EventCity==selectedCity && e.EventDate > DateTime.Now).ToList();
             ViewData["Events"] = events;
             return View();
         }
@@ -131,7 +135,6 @@ namespace EventEase_01.Controllers
             ViewData["Events"] = events;
             return View();
         }
-
         public ActionResult ShowEvents()
         {
             var events = _context.Events.Where(e => e.EventCity != null &&  e.EventDate > DateTime.Now).ToList();

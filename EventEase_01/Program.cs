@@ -1,10 +1,13 @@
+using EventEase_01.Controllers;
 using EventEase_01.Models;
 using EventEase_01.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using RabbitMQ.Client;
 using System.Configuration;
 using System.Net;
 using System.Text;
@@ -36,7 +39,10 @@ namespace EventEase_01
             builder.Services.AddScoped<OTPService>();
             builder.Services.AddScoped<UserRegistrations>();
             builder.Services.AddScoped<JwtToken>();
-            //builder.Services.AddSingleton<RabbitMQService>();
+        //    builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+        //.AddEntityFrameworkStores<EventEase01Context>()
+        //.AddDefaultTokenProviders();
+        //    builder.Services.AddScoped<UserController>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -98,6 +104,7 @@ namespace EventEase_01
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.Run();
         }
     }

@@ -1,19 +1,10 @@
 ﻿@model EventEase_01.Models.Event
-
-
 @{
     ViewData["Title"] = "SuperAdminDashboard";
 }
-
 <h1>SuperAdminDashboard</h1>
 <head>
     <style>
-        .SearchBar {
-            position: absolute;
-            top: 5%;
-            right: 5%;
-        }
-
         .card {
             width: calc(33.33% - 20px);
             margin: 10px;
@@ -28,7 +19,6 @@
         <form asp-controller="Event" asp-action="AdminAddEvents" method="get" style="display: inline;">
             <button type="submit" class="btn btn-danger">Add A New Event</button>
         </form>
-
         <form asp-controller="AdminEvents" asp-action="Index" method="get" style="display: inline;">
             <button type="submit" class="btn btn-danger">Manage Your Events</button>
         </form>

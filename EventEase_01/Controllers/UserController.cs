@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using EventEase_01.ActionAttributes;
 using System.Net.Mail;
 using System.Net;
+using System.Text.Json;
+using System.Text;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
@@ -15,12 +17,18 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client;
 using System.Text;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace EventEase_01.Controllers
 {
     public class UserController : Controller
     {
+     
+
         private readonly EventEase01Context _context;
         private readonly IConfiguration _config;
         private readonly AESEncryption _encryptionService;
@@ -29,7 +37,9 @@ namespace EventEase_01.Controllers
         private readonly EmailService _emailService;
         private readonly OTPService _otpService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        //private readonly RabbitMQService _rabbitMQService;
+        private readonly ConnectionFactory _factory;
+        //private readonly UserManager<IdentityUser> _userManager;
+
 
         public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice, UserRegistrations registrationService,JwtToken jwtToken, EmailService emailService, OTPService otpService, IHttpContextAccessor httpContextAccessor)
         {
@@ -38,10 +48,11 @@ namespace EventEase_01.Controllers
             _encryptionService = encryptionservice;
             _registrationService = registrationService;
             _jwtToken = jwtToken;
-            _emailService = emailService;
+            _emailService = emailService; 
             _otpService = otpService;
             _httpContextAccessor = httpContextAccessor;
-            //_rabbitMQService = rabbitMQService;
+            _factory = new ConnectionFactory() { HostName = "localhost" };
+            //_userManager = userManager;
         }
         [NoCache]
         public IActionResult Login(string msg)
@@ -61,7 +72,11 @@ namespace EventEase_01.Controllers
         [NoCache]
         public IActionResult Login(loginModel login, string returnUrl,string msg)
         {
+           
+
             var myUser = _context.Users.FirstOrDefault(x => x.UserEmail == login.Email);
+            HttpContext.Session.SetString("UserId", myUser.UserId.ToString());
+            ViewData["Id"] = myUser.UserId;
             if (myUser != null)
             {
                 string m = msg;
@@ -114,10 +129,11 @@ namespace EventEase_01.Controllers
         {
             TempData["UserEmail"] = email;
             string otp = _otpService.GenerateOTP();
+            TempData["GenOTP"] = otp;
             string subject = "Forgot Password OTP";
             string body = $"Your OTP for Password Reset is: {otp}";
             await _emailService.SendEmailAsync(email, subject, body);
-            return RedirectToAction("VerifyOTP", new { OTP=otp });
+            return RedirectToAction("VerifyOTP");
         }
         [HttpGet]
         public IActionResult VerifyOTP(string otp)
@@ -128,6 +144,7 @@ namespace EventEase_01.Controllers
         public IActionResult VerifyOTP(string GeneratedOTP, string EnteredOTP)
         
         {
+            GeneratedOTP = TempData["GenOTP"] as string;
             Console.WriteLine("OTP from hidden field: " + GeneratedOTP);
             Console.WriteLine("OTP from input field: " + EnteredOTP);
             if (GeneratedOTP == EnteredOTP)
@@ -176,10 +193,9 @@ namespace EventEase_01.Controllers
                 if (result)
                 {
                     TempData["SuccessMessage"] = "Registration successful! Please log in.";
-                    string success = "Registration Succesfull PLease Login Check";
-                    //string message = _httpContextAccessor.HttpContext.Session.GetString("Message");
+                   
 
-                    return RedirectToAction("Login", new { msg = success });
+                    return RedirectToAction("Login");
                 }
                 else
                 {
@@ -256,6 +272,7 @@ namespace EventEase_01.Controllers
             ViewData["Events"] = events;
             return View();
         }
+
         public async Task<IActionResult> SuperAdminDashboard()
         {
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
@@ -269,52 +286,132 @@ namespace EventEase_01.Controllers
         }
         public ActionResult PaymentGateway()
         {
+            var eventNameObj = TempData["name"];
+            Console.WriteLine("*****************" + eventNameObj);
+            if (eventNameObj != null)
+            {
+                var eventName = eventNameObj.ToString(); 
+                HttpContext.Session.SetString("EventName", eventName);
+            }
+
             return View();
         }
-        //public void ConsumeTicketUpdateMessages()
-        //{
-        //    var factory = new ConnectionFactory() { HostName = "5614-LAP-0344" };
-        //    using (var connection = factory.CreateConnection())
-        //    using (var channel = connection.CreateModel())
-        //    {
-        //        channel.QueueDeclare(queue: "ticket_updates", durable: true, exclusive: false, autoDelete: false, arguments: null);
-        //        var consumer = new EventingBasicConsumer(channel);
-        //        consumer.Received += (model, ea) =>
-        //        {
-        //            var body = ea.Body.ToArray();
-        //            var message = Encoding.UTF8.GetString(body);
-        //            var ticketIds = JsonConvert.DeserializeObject<List<Guid>>(message);
-        //            UpdateSeatStatus(ticketIds);
-        //        };
-        //        channel.BasicConsume(queue: "ticket_updates", autoAck: true, consumer: consumer);
-        //    }
-        //}
-        public ActionResult UpdateSeatStatus(List<Guid> ticketIds)
+        //[HttpPost]
+        public async Task<ActionResult> UpdateSeatStatus(List<Guid> ticketIds)
         {
-            //_rabbitMQService.PublishBatch(ticketIds);
-            foreach (var ticketId in ticketIds)
+            var eventName = TempData["EventName"];
+            //TempData["TicketIds"] = ticketIds;
+            TempData["name"] = eventName;
+            var factory = new ConnectionFactory()
             {
-                var ticket = _context.Tickets.FirstOrDefault(t => t.TicketId == ticketId);
-                if (ticket != null)
+                HostName = "localhost",
+                UserName = "guest",
+                Password = "guest"
+            };
+            var bookedTickets = new List<Guid>();
+
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
+                channel.QueueDeclare(queue: "ticket-booking",
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
+
+                var consumer = new EventingBasicConsumer(channel);
+                consumer.Received += async (model, ea) =>
                 {
-                    
-                    ticket.TicketAvailability = 0;
+                    var body = ea.Body.ToArray();
+                    var ticketId = Guid.Parse(Encoding.UTF8.GetString(body));
+
+                    var ticket = _context.Tickets.FirstOrDefault(t => t.TicketId == ticketId);
+                    if (ticket != null && ticket.TicketAvailability == 0)
+                    {
+                        Console.WriteLine($"Ticket {ticketId} already booked.");
+                    }
+                    else
+                    {
+                        if (ticket != null)
+                        {
+                            ticket.TicketAvailability = 0;
+                            Console.WriteLine("Message Dequeued From RabbitMQ ");
+                           
+                            bookedTickets.Add(ticketId);
+                            Console.WriteLine($"Booking ticket {ticketId}");
+                        }
+                    }
+                };
+
+                channel.BasicConsume(queue: "ticket-booking",
+                                     autoAck: true,
+                                     consumer: consumer);
+                foreach (var ticketId in ticketIds)
+                {
+                    await PublishMessage(ticketId, factory);
+                    Console.WriteLine("Message Queued to RabbitMQ");
                 }
             }
             _context.SaveChanges();
+            var userIdString = HttpContext.Session.GetString("UserId");
+            if (bookedTickets.Count == ticketIds.Count)
+            {
+                if (Guid.TryParse(userIdString, out Guid userId))
+                {
+                    foreach (var ticketId in bookedTickets)
+                    {
+                        var booking = new Booking
+                        {
+                            BookingId = Guid.NewGuid(),
+                            UserId = userId,
+                            TicketId = ticketId,
+                            NumberOfBookings = 1,
+                            BookingDateTime = DateTime.Now
+                        };
 
-            return View("PaymentGateway");
+                        _context.Bookings.Add(booking);
+                        Console.WriteLine("Booking Added ");
+                    }
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction("PaymentGateway");
+                //return View("PaymentGateway");
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+        private async Task PublishMessage(Guid ticketId, ConnectionFactory factory)
+        {
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
+                channel.QueueDeclare(queue: "ticket-booking",
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
+
+                var body = Encoding.UTF8.GetBytes(ticketId.ToString());
+
+                channel.BasicPublish(exchange: "",
+                                     routingKey: "ticket-booking",
+                                     basicProperties: null,
+                                     body: body);
+            }
         }
         public ActionResult SelectTickets(Guid eventId)
         {
             Console.WriteLine(eventId);
             var eventModel = _context.Events.FirstOrDefault(e => e.EventId == eventId);
+            var eventName = _context.Events.FirstOrDefault(e => e.EventId == eventId)?.EventName;
+            TempData["EventName"] = eventName;
             var ticket = _context.Tickets.Where(e => e.EventId == eventId).ToList();
             Console.WriteLine(eventModel.NumberOfTickets);
             ViewData["Tickets"] = ticket;
             return View(eventModel);
         }
-
         public ActionResult EventDescription(Guid eventId)
         {
             var eventDetails = (from e in _context.Events
@@ -322,8 +419,10 @@ namespace EventEase_01.Controllers
                                 where e.EventId == eventId
                                 select new { Event = e, VenueName = v.VenueName, VenueAddress = v.VenueAddress })  
                    .FirstOrDefault();
+            
             if (eventDetails != null)
             {
+                
                 ViewData["Events"] = eventDetails.Event;
                 ViewData["VenueName"] = eventDetails.VenueName;
                 ViewData["VenueAddress"] = eventDetails.VenueAddress;
