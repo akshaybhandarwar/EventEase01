@@ -22,13 +22,19 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging.Console;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using static System.Net.WebRequestMethods;
 
 namespace EventEase_01.Controllers
 {
     public class UserController : Controller
     {
-     
-
         private readonly EventEase01Context _context;
         private readonly IConfiguration _config;
         private readonly AESEncryption _encryptionService;
@@ -38,10 +44,12 @@ namespace EventEase_01.Controllers
         private readonly OTPService _otpService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ConnectionFactory _factory;
-        //private readonly UserManager<IdentityUser> _userManager;
+        private readonly SingleSignInServices _singleSignInServices;
 
+        private readonly UserManager<User> _userManager;
 
-        public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice, UserRegistrations registrationService,JwtToken jwtToken, EmailService emailService, OTPService otpService, IHttpContextAccessor httpContextAccessor)
+        
+        public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice, UserRegistrations registrationService,JwtToken jwtToken, EmailService emailService, OTPService otpService, IHttpContextAccessor httpContextAccessor,SingleSignInServices singleSignInServices)
         {
             _config = config;
             _context = context;
@@ -52,34 +60,122 @@ namespace EventEase_01.Controllers
             _otpService = otpService;
             _httpContextAccessor = httpContextAccessor;
             _factory = new ConnectionFactory() { HostName = "localhost" };
-            //_userManager = userManager;
+            _singleSignInServices = singleSignInServices;
         }
         [NoCache]
         public IActionResult Login(string msg)
         {
-            string m = msg;
             return View();
         }
         [HttpGet]
         [NoCache]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Clear();
+
             Response.Cookies.Delete("JWTToken");
             return RedirectToAction("Login");
+
         }
+    
+        public async Task GoogleLogin()
+        {
+            await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme,
+                new AuthenticationProperties
+                {
+                    //RedirectUri=Url.Action("GoogleResponse")
+                    RedirectUri = Url.Action("GoogleResponse", "User")
+                 
+
+                }) ;
+        }
+        public async Task<IActionResult> GoogleResponse()
+        {
+
+            var result = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+        
+                var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(claim => new
+                {
+                    claim.Issuer,
+                    claim.OriginalIssuer,
+                    claim.Type,
+                    claim.Value
+                });
+            var userEmailClaim = claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Email)?.Value;
+            var userNameClaim = claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)?.Value;
+            if (string.IsNullOrEmpty(userEmailClaim))
+            {
+                return BadRequest("Email claim not found.");
+            }
+
+            if (_context.Users.Any(u => u.UserEmail == userEmailClaim))
+            {
+                var Claims = result.Principal.Claims.ToList();
+                var identity = new ClaimsIdentity(Claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                var loginModel = new loginModel
+                {
+                    Email=userEmailClaim,
+                    Password="RandomKey"
+                };
+                bool isSingleSignIn = true;
+                if (_singleSignInServices.Login(loginModel, isSingleSignIn))
+                {
+                    
+                    var user = await _context.Users.FirstOrDefaultAsync(u => u.UserEmail == userEmailClaim);
+                    if (user != null)
+                    {
+                   
+                        return View("~/Views/Home/Index.cshtml");
+
+                    }
+                }
+            }
+            else
+            {
+                var registrationModel = new RegistrationModel
+                {
+                    UserName = userNameClaim,
+                    Email = userEmailClaim,
+                    Password = "RandomKey"
+                   
+                };
+                bool registrationResult = await _registrationService.RegisterUserAsync(registrationModel);
+
+                if (registrationResult)
+                {
+                    var loginModel = new loginModel
+                    {
+                        Email = userEmailClaim,
+                        Password = "RandomKey"
+                    };
+                    bool isSingleSignIn = true;
+                    if (_singleSignInServices.Login(loginModel, isSingleSignIn))
+                    {
+                        return View("~/Views/Home/Index.cshtml");
+                    }
+                }
+                else
+                {
+                    return BadRequest("User registration failed.");
+                }
+            }
+            return RedirectToAction("Login", "User");
+
+
+        }
+
         [HttpPost]
         [NoCache]
-        public IActionResult Login(loginModel login, string returnUrl,string msg)
+        public IActionResult Login(loginModel login, string returnUrl)
         {
-           
-
             var myUser = _context.Users.FirstOrDefault(x => x.UserEmail == login.Email);
             HttpContext.Session.SetString("UserId", myUser.UserId.ToString());
             ViewData["Id"] = myUser.UserId;
             if (myUser != null)
             {
-                string m = msg;
                 string key = _config["PasswordKey"];
                 string encryptedPassword = _encryptionService.AuthEncrypt(login.Password, myUser.PasswordSalt, key);
                 if (encryptedPassword == myUser.PasswordHash)
@@ -112,6 +208,7 @@ namespace EventEase_01.Controllers
                 }
             }
             ModelState.AddModelError(string.Empty, "Invalid email or password. Please try again.");
+            TempData["message"] = "Invalid Email or Password Please Try Again....";
             return RedirectToAction("Login", "User", new { returnUrl });
         }
         [NoCache]
@@ -287,20 +384,23 @@ namespace EventEase_01.Controllers
         public ActionResult PaymentGateway()
         {
             var eventNameObj = TempData["name"];
-            Console.WriteLine("*****************" + eventNameObj);
-            if (eventNameObj != null)
+                 if (eventNameObj != null)
             {
                 var eventName = eventNameObj.ToString(); 
-                HttpContext.Session.SetString("EventName", eventName);
             }
-
             return View();
         }
         //[HttpPost]
         public async Task<ActionResult> UpdateSeatStatus(List<Guid> ticketIds)
         {
+            int count = ticketIds.Count;
+            HttpContext.Session.SetInt32("BookedTicketsCount", count);
             var eventName = TempData["EventName"];
-            //TempData["TicketIds"] = ticketIds;
+            if (eventName != null)
+            {
+                HttpContext.Session.SetString("EventName", (string)eventName);
+            }
+
             TempData["name"] = eventName;
             var factory = new ConnectionFactory()
             {
@@ -309,7 +409,7 @@ namespace EventEase_01.Controllers
                 Password = "guest"
             };
             var bookedTickets = new List<Guid>();
-
+            
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
@@ -324,7 +424,7 @@ namespace EventEase_01.Controllers
                 {
                     var body = ea.Body.ToArray();
                     var ticketId = Guid.Parse(Encoding.UTF8.GetString(body));
-
+                 
                     var ticket = _context.Tickets.FirstOrDefault(t => t.TicketId == ticketId);
                     if (ticket != null && ticket.TicketAvailability == 0)
                     {
@@ -342,6 +442,7 @@ namespace EventEase_01.Controllers
                         }
                     }
                 };
+               
 
                 channel.BasicConsume(queue: "ticket-booking",
                                      autoAck: true,
@@ -375,7 +476,6 @@ namespace EventEase_01.Controllers
                 }
                 await _context.SaveChangesAsync();
                 return RedirectToAction("PaymentGateway");
-                //return View("PaymentGateway");
             }
             else
             {
@@ -422,12 +522,39 @@ namespace EventEase_01.Controllers
             
             if (eventDetails != null)
             {
-                
                 ViewData["Events"] = eventDetails.Event;
                 ViewData["VenueName"] = eventDetails.VenueName;
                 ViewData["VenueAddress"] = eventDetails.VenueAddress;
             }
             return View();
+        }
+        
+        public ActionResult ListEvent()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ListEvent(ListEventModel listModel)
+        {
+            var Inquiry = new Inquiry
+            {
+                UserName=listModel.UserName,
+                UserEmail=listModel.UserEmail,
+                EventName=listModel.EventName,
+                UserContact=listModel.UserContact
+
+            };
+            _context.Inquiry.Add(Inquiry);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+        [HttpGet]
+        public ActionResult ShowInquiry()
+        {
+            var inquiries = _context.Inquiry.ToList();
+            ViewData["Inquiry"] = inquiries;
+            return View("ManageInquiries",inquiries);
         }
     }
 }

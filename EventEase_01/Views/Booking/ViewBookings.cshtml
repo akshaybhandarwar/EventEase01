@@ -1,0 +1,75 @@
+﻿<head>
+    <br />
+   
+    <h1 style="background-color:#dc3545; text-align:center; color:white;">Order History</h1>
+</head>
+<body>
+
+@{
+    var eventDetails = ViewData["data"] as List<Event>;
+    var ticketCounts = TempData["ticks"] as List<int>;
+}
+
+    <br />
+    @if (eventDetails != null)
+    {
+        <h5>Total Bookings : @eventDetails.Count</h5>
+    }
+    <br />
+@if (eventDetails != null)
+{
+    <div class="booking-container">
+   @foreach (var detail in eventDetails)
+        {
+            Random rnd = new Random();
+            int ticketsBooked = rnd.Next(5, 11);
+            <div class="booking-card" style="border-color:red">
+                <h2 >@detail.EventName</h2>
+                <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">@detail.EventDescription</p>
+                <div style="display: inline;">
+                    <p style="font-weight: bold; display: inline;">City :@detail.EventCity</p> | 
+                    <p style="font-weight: bold; display: inline;">Tickets Booked:@ticketsBooked</p>
+                </div>
+            </div>
+        } 
+    </div>
+}
+else
+{
+    <p>No bookings found.</p>
+}
+</body>
+<style>
+    .booking-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .booking-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: calc(33.33% - 20px); 
+        transition: transform 0.3s ease;
+    }
+        .booking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .booking-card h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .booking-card p {
+            margin-bottom: 10px;
+            color: #666;
+            font-size: 16px;
+        }
+            .booking-card p:last-child {
+                margin-bottom: 0;
+            }
+</style>

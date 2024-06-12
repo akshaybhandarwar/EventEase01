@@ -271,3 +271,4 @@ C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\M
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\StackExchange.Redis.dll
 C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\RabbitMQ.Client.dll
+C:\Users\Coditas-Admin\source\repos\EventEase_01\EventEase_01\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll

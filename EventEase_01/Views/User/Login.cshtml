@@ -1,117 +1,5 @@
-﻿@*  @{
-    @model EventEase_01.Models.loginModel
-   
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Login</title>
-        <style>
-        
-
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-image: url('../images/reg.jpg');
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                opacity: 0.8;
-            }
-
-            h2 {
-                text-align: center;
-                margin-top: 50px;
-            }
-
-            form {
-                max-width: 400px;
-                margin: 0 auto;
-                padding: 20px;
-                background-color: #fff;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-
-            label {
-                display: block;
-                margin-bottom: 5px;
-            }
-
-            input[type="text"],
-            input[type="email"],
-            input[type="password"] {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 15px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                box-sizing: border-box;
-            }
-
-            button[type="submit"] {
-                width: 100%;
-                padding: 10px;
-                background-color:red;
-                color: #fff;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-                button[type="submit"]:hover {
-                    background-color: #0056b3;
-                }
-</style>
-    </head>
-    <body>
-        <h2>Login</h2>
-        @if (TempData["SuccessMessage"]!=null)
-        {
-            <div class="alert alert-success" role="alert">
-                @TempData["SuccessMessage"]
-            </div>
-        }
-        </div>
-        
-        @if (TempData["Success"] != null)
-        {
-            <div class="alert alert-success">
-                @TempData["Success"] !!
-            </div>
-        }
-       @if (!string.IsNullOrEmpty(Model.ToString())){
-         <div>
-            <p>@Model</p> 
-        </div>
-       }
-        <form method="post">
-            <div>
-                <label>Email:</label>
-                <input type="email" asp-for="Email" />
-            </div>
-            <br />
-            <div>
-                <label>Password:</label>
-                <input type="password" asp-for="Password" />
-            </div>
-            <br />
-            <button type="submit">Login</button>
-            <br />
-
-            <a class="fgp" href="/User/ForgotPassword">Forget Password </a>
-            
-        </form>
-
-       
-    </body>
-
-    </html>
-
-}
-                 *@
-
-                @model EventEase_01.Models.loginModel
+﻿
+@model EventEase_01.Models.loginModel
 <!DOCTYPE html>
 <html>
 <head>
@@ -171,6 +59,26 @@
             button[type="submit"]:hover {
                 background-color: #0056b3;
             }
+
+        .forgot-password-link,
+        .google-login-link {
+            text-decoration: none;
+            color: Blue;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+            .forgot-password-link:hover,
+            .google-login-link:hover {
+                background-color: #f0f0f0; 
+            }
+
+
+        .text-center a + a {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -182,22 +90,14 @@
             @TempData["SuccessMessage"]
         </div>
     }
-@* 
 
-    @{
-        string msg = "";
-        if (Context.Request.Query.ContainsKey("msg"))
-        {
-            msg = System.Web.HttpUtility.UrlDecode(Context.Request.Query["msg"]);
-        }
-    }
-
-    @if (!string.IsNullOrEmpty(msg))
+    @if (TempData["message"] != null)
     {
-        <p>@msg</p>
-    } *@
-
-    <form method="post">
+        <div class="alert alert-warning" role="alert">
+            @TempData["message"]
+        </div>
+    }
+    <form method="post" action="/User/Login">
         <div>
             <label>Email:</label>
             <input type="email" asp-for="Email" />
@@ -211,7 +111,10 @@
         <button type="submit">Login</button>
         <br />
 
-        <a class="fgp" href="/User/ForgotPassword">Forget Password </a>
+        <div class="text-center mt-3">
+            <a class="forgot-password-link" href="/User/ForgotPassword">Forgot Password</a>|
+            <a class="google-login-link" asp-action="GoogleLogin" asp-route-returnUrl="@ViewData["ReturnUrl"]"> <i class="bi bi-google"></i> Login with Google</a>
+        </div>
     </form>
 </body>
 </html>

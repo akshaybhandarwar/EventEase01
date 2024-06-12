@@ -11,24 +11,28 @@ using RabbitMQ.Client;
 using System.Configuration;
 using System.Net;
 using System.Text;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.OAuth;
 namespace EventEase_01
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-          
-        var builder = WebApplication.CreateBuilder(args);
-     
-            builder.Services.AddControllersWithViews();
+
+            var builder = WebApplication.CreateBuilder(args);
+
+
+        
+        builder.Services.AddControllersWithViews();
             builder.Services.AddSession();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSession();
 
             var provider = builder.Services.BuildServiceProvider();
             var config = provider.GetService<IConfiguration>();
-           
+
             builder.Services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = config.GetConnectionString("RedisConnection");
@@ -38,11 +42,21 @@ namespace EventEase_01
             builder.Services.AddScoped<EmailService>();
             builder.Services.AddScoped<OTPService>();
             builder.Services.AddScoped<UserRegistrations>();
+            builder.Services.AddScoped<SingleSignInServices>();
             builder.Services.AddScoped<JwtToken>();
-        //    builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-        //.AddEntityFrameworkStores<EventEase01Context>()
-        //.AddDefaultTokenProviders();
-        //    builder.Services.AddScoped<UserController>();
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            }).AddCookie()
+            .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+            {
+                options.ClientId = config["GoogleKeys:ClientId"];
+                options.ClientSecret = config["GoogleKeys:ClientSecret"];
+            });
+           
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

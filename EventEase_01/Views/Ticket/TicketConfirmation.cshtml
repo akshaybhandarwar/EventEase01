@@ -70,22 +70,22 @@
             }
     </style>
 </head>
+<br />
+<br />
 <div class="container">
     <div class="ticket">
         <div class="ticket-header">
             <h1>EventEase</h1>
         </div>
-
         <div class="ticket-details">
-            <h3>Movie Details</h3>
+            <h3>Event Details</h3>
             <p><strong>Event:</strong> @TempData["EventName"]</p>
             <p><strong>Location:</strong> @ViewBag.EventCity</p>
             <p><strong>Date:</strong> @ViewBag.EventDate</p>
-            <p><strong>Seats:</strong> S1, S2</p>
+            <p><strong>Total Seats:</strong> @TempData["NumberOfTickets"]</p>
         </div>
-
         <div class="ticket-price">
-            Total: ₹999
+            Total: @TempData["TicketPrice"]
         </div>
 
         <div class="ticket-footer">

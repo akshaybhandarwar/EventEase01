@@ -1,0 +1,70 @@
+﻿@model EventEase_01.Models.ListEventModel
+
+<head>
+    <style>
+        .professional-form {
+            max-width: 500px;
+            background-color: black;
+            margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+            .professional-form .form-group {
+                margin-bottom: 20px;
+            }
+
+            .professional-form label {
+                font-weight: bold;
+            }
+
+            .professional-form input[type="text"],
+            .professional-form input[type="email"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            .professional-form button[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+                .professional-form button[type="submit"]:hover {
+                    background-color: #0056b3;
+                }
+
+    </style>
+</head>
+
+<body>
+    <form asp-action="ListEvent" method="post" class="professional-form">
+        <div class="form-group">
+            <label for="UserName" class="control-label">User Name</label>
+            <input asp-for="UserName" id="UserName" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="UserEmail" class="control-label">User Email</label>
+            <input asp-for="UserEmail" id="UserEmail" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="EventName" class="control-label">Event Name</label>
+            <input asp-for="EventName" id="EventName" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="UserContact" class="control-label">User Contact</label>
+            <input asp-for="UserContact" id="UserContact" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-danger">Submit</button>
+    </form>
+</body>

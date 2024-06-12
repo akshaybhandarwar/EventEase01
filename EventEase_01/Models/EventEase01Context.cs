@@ -31,6 +31,9 @@ public partial class EventEase01Context : DbContext
 
     public virtual DbSet<Venue> Venues { get; set; }
 
+    public virtual DbSet<Inquiry> Inquiry { get; set; }
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 
@@ -63,7 +66,7 @@ public partial class EventEase01Context : DbContext
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__Booking__User_ID__5BE2A6F2");
         });
-
+       
         modelBuilder.Entity<Category>(entity =>
         {
             entity.HasKey(e => e.CategoryId).HasName("PK__Category__6DB38D4E558E5175");
@@ -79,6 +82,16 @@ public partial class EventEase01Context : DbContext
                 .HasColumnName("Category_Name");
         });
 
+        modelBuilder.Entity<Inquiry>(entity =>
+        {
+
+            entity.ToTable("Inquiry");
+            entity.HasKey(e => e.InquiryId);
+            entity.Property(e => e.UserName).HasColumnName("UserName");
+            entity.Property(e => e.UserEmail).HasColumnName("UserEmail");
+            entity.Property(e => e.EventName).HasColumnName("EventName");
+            entity.Property(e => e.UserContact).HasColumnName("UserContact");
+        });
         modelBuilder.Entity<Event>(entity =>
         {
             entity.HasKey(e => e.EventId).HasName("PK__Event__FD6BEFE402244B4C");
