@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EventEase_01")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51e434d7f38806775869a9f9d2db1f3d8b909e41")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e02cbcec7bf559aae48216f1bc1c3d25361b37b")]
 [assembly: System.Reflection.AssemblyProductAttribute("EventEase_01")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EventEase_01")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

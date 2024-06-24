@@ -1,51 +1,11 @@
-﻿@model EventEase_01.Models.ListEventModel
-
+﻿ @model EventEase_01.Models.ListEventModel
+@*
 <head>
-    <style>
-        .professional-form {
-            max-width: 500px;
-            background-color: black;
-            margin: auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-        }
 
-            .professional-form .form-group {
-                margin-bottom: 20px;
-            }
-
-            .professional-form label {
-                font-weight: bold;
-            }
-
-            .professional-form input[type="text"],
-            .professional-form input[type="email"] {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
-
-            .professional-form button[type="submit"] {
-                width: 100%;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                background-color: #007bff;
-                color: #fff;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-
-                .professional-form button[type="submit"]:hover {
-                    background-color: #0056b3;
-                }
-
-    </style>
 </head>
 
 <body>
+    <h2> Want to List your own Event , Contact Us !</h2>
     <form asp-action="ListEvent" method="post" class="professional-form">
         <div class="form-group">
             <label for="UserName" class="control-label">User Name</label>
@@ -68,3 +28,68 @@
         <button type="submit" class="btn btn-danger">Submit</button>
     </form>
 </body>
+ *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Your Event | EventEase</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .professional-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+            .professional-form .form-group {
+                margin-bottom: 20px;
+            }
+
+            .professional-form .form-control {
+                border-radius: 5px;
+            }
+
+            .professional-form .btn {
+                font-size: 16px;
+                font-weight: 500;
+                padding: 10px 20px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Want to List Your Event? Contact Us !!!</h2>
+        <form asp-action="ListEvent" method="post" class="professional-form">
+            <div class="form-group">
+                <label for="UserName" class="control-label">User Name</label>
+                <input asp-for="UserName" id="UserName" class="form-control" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="UserEmail" class="control-label">User Email</label>
+                <input asp-for="UserEmail" id="UserEmail" class="form-control" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="EventName" class="control-label">Event Name</label>
+                <input asp-for="EventName" id="EventName" class="form-control" placeholder="Enter event name" required>
+            </div>
+            <div class="form-group">
+                <label for="UserContact" class="control-label">User Contact</label>
+                <input asp-for="UserContact" id="UserContact" class="form-control" placeholder="Enter your contact" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-danger">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

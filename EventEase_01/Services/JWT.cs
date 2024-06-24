@@ -10,9 +10,6 @@ namespace EventEase_01.Services
     public class JwtToken
     {
         private readonly IConfiguration _config;
-
-
-
         public JwtToken(IConfiguration config)
         {
             _config = config;
@@ -29,16 +26,14 @@ namespace EventEase_01.Services
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Role,Role)
             };
-            
+
                 var token = new JwtSecurityToken(_config["Jwt:Issuer"],
                     _config["Jwt:Audience"],
                     claims,
                     expires: DateTime.Now.AddMinutes(25),
                     signingCredentials: credentials);
-            
-
+               
                 return new JwtSecurityTokenHandler().WriteToken(token);
             }
         }
-    
 }

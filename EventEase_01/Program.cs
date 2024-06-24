@@ -32,7 +32,7 @@ namespace EventEase_01
 
             var provider = builder.Services.BuildServiceProvider();
             var config = provider.GetService<IConfiguration>();
-
+            builder.Services.AddSignalR();
             builder.Services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = config.GetConnectionString("RedisConnection");
@@ -118,7 +118,6 @@ namespace EventEase_01
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
             app.Run();
         }
     }

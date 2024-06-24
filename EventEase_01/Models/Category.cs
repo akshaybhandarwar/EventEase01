@@ -13,3 +13,4 @@ public partial class Category
 
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 }
+

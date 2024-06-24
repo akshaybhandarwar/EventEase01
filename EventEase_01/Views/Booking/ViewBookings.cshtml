@@ -1,7 +1,7 @@
 ﻿<head>
     <br />
    
-    <h1 style="background-color:#dc3545; text-align:center; color:white;">Order History</h1>
+    <h1 style="background-color:#dc3545; text-align:center; color:white;">Booking History</h1>
 </head>
 <body>
 
@@ -23,14 +23,22 @@
         {
             Random rnd = new Random();
             int ticketsBooked = rnd.Next(5, 11);
-            <div class="booking-card" style="border-color:red">
-                <h2 >@detail.EventName</h2>
-                <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">@detail.EventDescription</p>
-                <div style="display: inline;">
-                    <p style="font-weight: bold; display: inline;">City :@detail.EventCity</p> | 
-                    <p style="font-weight: bold; display: inline;">Tickets Booked:@ticketsBooked</p>
+       
+
+                <div class="booking-card" style="border-color: red; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div>
+                        <h2>@detail.EventName</h2>
+                        <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">@detail.EventDescription</p>
+                        <div style="display: inline;">
+                            <p style="font-weight: bold; display: inline;">City: @detail.EventCity</p> |
+                            <p style="font-weight: bold; display: inline;">Tickets Booked: @ticketsBooked</p> |
+                        </div>
+                    </div>
+                    <br />
+                    <button type="button" class="btn btn-danger">Cancel Booking</button>
                 </div>
-            </div>
+
+ 
         } 
     </div>
 }

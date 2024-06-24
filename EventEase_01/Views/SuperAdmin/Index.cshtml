@@ -3,7 +3,59 @@
 @{
     ViewData["Title"] = "Index";
 }
+<head>
+    <style>
+        /* Table Styles */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
 
+            .table th,
+            .table td {
+                padding: 12px 15px;
+                text-align: left;
+            }
+
+            .table thead {
+                background-color: #333;
+                color: #fff;
+            }
+
+            .table th {
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .table tbody tr:nth-child(even) {
+                background-color: #f8f8f8;
+            }
+
+            .table tbody tr:hover {
+                background-color: #e9e9e9;
+            }
+
+            /* Button Styles */
+            .table button {
+                background-color: #333;
+                color: #fff;
+                border: none;
+                padding: 8px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin-right: 5px;
+            }
+
+                .table button:hover {
+                    background-color: #555;
+                }
+    </style>
+</head>
 <h1>Manage Users</h1>
 
 <table class="table">
@@ -12,9 +64,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserAge)
-            </th>
+     
             <th>
                 @Html.DisplayNameFor(model => model.UserEmail)
             </th>
@@ -30,9 +80,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserAge)
-            </td>
+    
             <td>
                 @Html.DisplayFor(modelItem => item.UserEmail)
             </td>
@@ -44,7 +92,6 @@
 
                     <button onclick="location.href='@Url.Action("Details", "SuperAdmin", new { id = item.UserId })'">Details</button>
 
-                    <button onclick="location.href='@Url.Action("Delete", "SuperAdmin", new { id = item.UserId })'">Delete</button>
 
                     
             </td>

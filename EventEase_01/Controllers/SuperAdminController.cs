@@ -6,16 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventEase_01.Models;
+using EventEase_01.Services;
 
 namespace EventEase_01.Controllers
 {
+    
     public class SuperAdminController : Controller
     {
         private readonly EventEase01Context _context;
+        private readonly EmailService _emailService;
 
-        public SuperAdminController(EventEase01Context context)
+        public SuperAdminController(EventEase01Context context, EmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
 
    
@@ -96,10 +100,25 @@ namespace EventEase_01.Controllers
                     }
 
                     userToUpdate.UserRole = editedUser.UserRole;
-
+                    string? usermail = userToUpdate.UserEmail;
                     _context.Update(userToUpdate);
                     await _context.SaveChangesAsync();
+                    if (editedUser.UserRole == "admin")
+                    {
+                        string subject = "Congratulations on Your Promotion to Admin!";
+                        string body = $"Dear {userToUpdate.UserName},\r\n\r\n" +
+                                      $"I am pleased to inform you that you have been promoted to the role of {editedUser.UserRole} in our system. " +
+                                      $"With this new role, you now have additional privileges, including the ability to add events to our platform. " +
+                                      $"As an Administrator, you play a crucial role in shaping our platform and contributing to its success.\r\n\r\n" +
+                                      $"We trust you will utilize your new responsibilities with care and integrity. " +
+                                      $"Should you have any questions or need assistance, please do not hesitate to reach out to us.\r\n\r\n" +
+                                      $"Once again, congratulations on your promotion! .";
+                        await _emailService.SendEmailAsync(usermail, subject, body);
+                        }
+                        
+                    
                 }
+
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!UserExists(editedUser.UserId))

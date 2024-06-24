@@ -45,10 +45,8 @@ namespace EventEase_01.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ConnectionFactory _factory;
         private readonly SingleSignInServices _singleSignInServices;
-
         private readonly UserManager<User> _userManager;
 
-        
         public UserController(EventEase01Context context, IConfiguration config, AESEncryption encryptionservice, UserRegistrations registrationService,JwtToken jwtToken, EmailService emailService, OTPService otpService, IHttpContextAccessor httpContextAccessor,SingleSignInServices singleSignInServices)
         {
             _config = config;
@@ -63,8 +61,14 @@ namespace EventEase_01.Controllers
             _singleSignInServices = singleSignInServices;
         }
         [NoCache]
-        public IActionResult Login(string msg)
+        public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+
+                return RedirectToAction("Dashboard", "User");
+            }
+
             return View();
         }
         [HttpGet]
@@ -78,21 +82,16 @@ namespace EventEase_01.Controllers
             return RedirectToAction("Login");
 
         }
-    
         public async Task GoogleLogin()
         {
             await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme,
                 new AuthenticationProperties
                 {
-                    //RedirectUri=Url.Action("GoogleResponse")
                     RedirectUri = Url.Action("GoogleResponse", "User")
-                 
-
                 }) ;
         }
         public async Task<IActionResult> GoogleResponse()
         {
-
             var result = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
         
                 var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(claim => new
@@ -108,7 +107,6 @@ namespace EventEase_01.Controllers
             {
                 return BadRequest("Email claim not found.");
             }
-
             if (_context.Users.Any(u => u.UserEmail == userEmailClaim))
             {
                 var Claims = result.Principal.Claims.ToList();
@@ -123,13 +121,10 @@ namespace EventEase_01.Controllers
                 bool isSingleSignIn = true;
                 if (_singleSignInServices.Login(loginModel, isSingleSignIn))
                 {
-                    
                     var user = await _context.Users.FirstOrDefaultAsync(u => u.UserEmail == userEmailClaim);
                     if (user != null)
                     {
-                   
-                        return View("~/Views/Home/Index.cshtml");
-
+                        return View("~/Views/Home/Index.cshtml");                    
                     }
                 }
             }
@@ -163,8 +158,6 @@ namespace EventEase_01.Controllers
                 }
             }
             return RedirectToAction("Login", "User");
-
-
         }
 
         [HttpPost]
@@ -172,10 +165,15 @@ namespace EventEase_01.Controllers
         public IActionResult Login(loginModel login, string returnUrl)
         {
             var myUser = _context.Users.FirstOrDefault(x => x.UserEmail == login.Email);
-            HttpContext.Session.SetString("UserId", myUser.UserId.ToString());
-            ViewData["Id"] = myUser.UserId;
             if (myUser != null)
             {
+                ViewData["Id"] = myUser.UserId;
+                HttpContext.Session.SetString("UserId", myUser.UserId.ToString());
+                HttpContext.Session.SetString("Username", myUser.UserName);
+                TempData["Username"] = myUser.UserName;
+                ViewData["Username"] = myUser.UserName;
+                Console.WriteLine("Logged In User :" + myUser.UserName.ToString());
+                ViewData["username"]=myUser.UserName.ToString();
                 string key = _config["PasswordKey"];
                 string encryptedPassword = _encryptionService.AuthEncrypt(login.Password, myUser.PasswordSalt, key);
                 if (encryptedPassword == myUser.PasswordHash)
@@ -207,7 +205,6 @@ namespace EventEase_01.Controllers
                     }
                 }
             }
-            ModelState.AddModelError(string.Empty, "Invalid email or password. Please try again.");
             TempData["message"] = "Invalid Email or Password Please Try Again....";
             return RedirectToAction("Login", "User", new { returnUrl });
         }
@@ -229,9 +226,20 @@ namespace EventEase_01.Controllers
             TempData["GenOTP"] = otp;
             string subject = "Forgot Password OTP";
             string body = $"Your OTP for Password Reset is: {otp}";
-            await _emailService.SendEmailAsync(email, subject, body);
-            return RedirectToAction("VerifyOTP");
+            var user = _context.Users.Where(e => e.UserEmail == email).FirstOrDefault();
+            if (user != null)
+            {
+                await _emailService.SendEmailAsync(email, subject, body);
+                return RedirectToAction("VerifyOTP");
+            }
+            else
+            {
+                TempData["unuser"] = "User Does not Exist. Please Register First !!!";
+                Console.WriteLine("User does not exist");
+            }
+            return View();
         }
+
         [HttpGet]
         public IActionResult VerifyOTP(string otp)
         {           
@@ -239,7 +247,6 @@ namespace EventEase_01.Controllers
         }
         [HttpPost]
         public IActionResult VerifyOTP(string GeneratedOTP, string EnteredOTP)
-        
         {
             GeneratedOTP = TempData["GenOTP"] as string;
             Console.WriteLine("OTP from hidden field: " + GeneratedOTP);
@@ -305,10 +312,13 @@ namespace EventEase_01.Controllers
         [NoCache]
         public async Task<IActionResult> Dashboard([FromServices] IDistributedCache cache)
         {
+            
             if (!User.Identity.IsAuthenticated)
             {
+              
                 return RedirectToAction("Login", "User");
             }
+          
             var cachedData = await cache.GetStringAsync("DashboardData");
             if (cachedData != null)
             {
@@ -323,7 +333,10 @@ namespace EventEase_01.Controllers
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10)
             });
             ViewData["Events"] = events;
+         
             Console.WriteLine("Fetched Events from SQL Server..");
+            string username = TempData["Username"] as string;
+            ViewBag.Username = username;
             return View();
         }
         [Authorize(Roles = "admin")]
@@ -343,16 +356,12 @@ namespace EventEase_01.Controllers
                 Console.WriteLine("Data Fetched From Redis ...");
                 return View();
             }
-
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
-
             await cache.SetStringAsync("AdminDashboardData", JsonConvert.SerializeObject(events), new DistributedCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) 
             });
-           
             ViewData["Events"] = events;
-            
             Console.WriteLine("Data Fetched From SQL Server ...");
             return View();
         }
@@ -369,7 +378,6 @@ namespace EventEase_01.Controllers
             ViewData["Events"] = events;
             return View();
         }
-
         public async Task<IActionResult> SuperAdminDashboard()
         {
             var events = _context.Events.Where(e => e.EventDate > DateTime.Now).ToList();
@@ -390,7 +398,6 @@ namespace EventEase_01.Controllers
             }
             return View();
         }
-        //[HttpPost]
         public async Task<ActionResult> UpdateSeatStatus(List<Guid> ticketIds)
         {
             int count = ticketIds.Count;
@@ -400,7 +407,6 @@ namespace EventEase_01.Controllers
             {
                 HttpContext.Session.SetString("EventName", (string)eventName);
             }
-
             TempData["name"] = eventName;
             var factory = new ConnectionFactory()
             {
@@ -408,8 +414,9 @@ namespace EventEase_01.Controllers
                 UserName = "guest",
                 Password = "guest"
             };
+            var redirectHome = false;
             var bookedTickets = new List<Guid>();
-            
+            var lockManager = new RedisDistributedLock("localhost:6379");
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
@@ -418,32 +425,49 @@ namespace EventEase_01.Controllers
                                      exclusive: false,
                                      autoDelete: false,
                                      arguments: null);
-
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += async (model, ea) =>
                 {
                     var body = ea.Body.ToArray();
                     var ticketId = Guid.Parse(Encoding.UTF8.GetString(body));
-                 
+
                     var ticket = _context.Tickets.FirstOrDefault(t => t.TicketId == ticketId);
                     if (ticket != null && ticket.TicketAvailability == 0)
                     {
                         Console.WriteLine($"Ticket {ticketId} already booked.");
+
+
+                        redirectHome = true;
                     }
                     else
                     {
-                        if (ticket != null)
+                        if (ticket != null && ticket.TicketAvailability == 1)
                         {
-                            ticket.TicketAvailability = 0;
-                            Console.WriteLine("Message Dequeued From RabbitMQ ");
-                           
-                            bookedTickets.Add(ticketId);
-                            Console.WriteLine($"Booking ticket {ticketId}");
-                        }
-                    }
-                };
-               
+                            if (await lockManager.AcquireLockAsync(ticketId.ToString(), TimeSpan.FromSeconds(30))) { 
+                            try
+                            {
+                                ticket.TicketAvailability = 0;
+                                Console.WriteLine("Message Dequeued From RabbitMQ ");
 
+                                bookedTickets.Add(ticketId);
+                                Console.WriteLine($"Booking ticket {ticketId}");
+
+                            }
+                            finally
+                            {
+                                await lockManager.ReleaseLockAsync(ticketId.ToString());
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Failed to acquire lock for ticket {ticketId}. Another user may be booking it.");
+                        }
+
+                    }
+                }
+                    
+                };
+                
                 channel.BasicConsume(queue: "ticket-booking",
                                      autoAck: true,
                                      consumer: consumer);
@@ -455,7 +479,11 @@ namespace EventEase_01.Controllers
             }
             _context.SaveChanges();
             var userIdString = HttpContext.Session.GetString("UserId");
-            if (bookedTickets.Count == ticketIds.Count)
+            if (redirectHome)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else if (bookedTickets.Count == ticketIds.Count)
             {
                 if (Guid.TryParse(userIdString, out Guid userId))
                 {
@@ -469,12 +497,12 @@ namespace EventEase_01.Controllers
                             NumberOfBookings = 1,
                             BookingDateTime = DateTime.Now
                         };
-
                         _context.Bookings.Add(booking);
                         Console.WriteLine("Booking Added ");
                     }
                 }
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction("PaymentGateway");
             }
             else
@@ -494,7 +522,6 @@ namespace EventEase_01.Controllers
                                      arguments: null);
 
                 var body = Encoding.UTF8.GetBytes(ticketId.ToString());
-
                 channel.BasicPublish(exchange: "",
                                      routingKey: "ticket-booking",
                                      basicProperties: null,
@@ -528,7 +555,6 @@ namespace EventEase_01.Controllers
             }
             return View();
         }
-        
         public ActionResult ListEvent()
         {
             return View();
@@ -542,19 +568,27 @@ namespace EventEase_01.Controllers
                 UserEmail=listModel.UserEmail,
                 EventName=listModel.EventName,
                 UserContact=listModel.UserContact
-
             };
             _context.Inquiry.Add(Inquiry);
             _context.SaveChanges();
-
             return RedirectToAction("Dashboard");
         }
+
         [HttpGet]
         public ActionResult ShowInquiry()
         {
-            var inquiries = _context.Inquiry.ToList();
+            var users = _context.Users.Where(e => e.UserRole == "user").ToList();
+
+            var inquiries = _context.Inquiry
+                .ToList() 
+                .Join(users,
+                      inquiry => inquiry.UserEmail,
+                      user => user.UserEmail,
+                      (inquiry, user) => inquiry)
+                .ToList();
             ViewData["Inquiry"] = inquiries;
-            return View("ManageInquiries",inquiries);
+            return View("ManageInquiries", inquiries);
         }
+
     }
 }

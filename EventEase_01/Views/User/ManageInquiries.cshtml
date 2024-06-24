@@ -15,15 +15,15 @@
         <div class="row">
             @foreach (var inquiry in Model)
             {
-                <div class="col-md-4 mb-3">
-                    <div class="card">
+                <div class="col-md-4 mb-3" >
+                    <div class="card" style="border:2px solid red">
                         <div class="card-body">
                             <h5 class="card-title">@inquiry.UserName</h5>
                             <p class="card-text"><strong>Email:</strong> @inquiry.UserEmail</p>
                             <p class="card-text"><strong>Event:</strong> @inquiry.EventName</p>
                             <p class="card-text"><strong>Contact:</strong> @inquiry.UserContact</p>
                             <form asp-controller="SuperAdmin" asp-action="Index" asp-route-id="@inquiry.InquiryId">
-                                <button type="submit" class="btn btn-primary">Manage User</button>
+                                <button type="submit" class="btn btn-danger">Manage User</button>
                             </form>
                         </div>
                     </div>
