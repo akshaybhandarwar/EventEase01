@@ -52,6 +52,7 @@ namespace EventEase_01.Controllers
                 return "/EventImages/default-Event.png";
             }
         }
+
         [HttpGet]
         public ActionResult AdminAddEvents()
         {
@@ -208,7 +209,18 @@ namespace EventEase_01.Controllers
                 ViewData["Events"] = eventDetails.Event;
                 ViewData["VenueName"] = eventDetails.VenueName;
                 ViewData["VenueAddress"] = eventDetails.VenueAddress;
+
             }
+            //var ticketPrice = _context.Tickets.Where(e => e.EventId == eventId).FirstOrDefault();
+            var ticketPrice = _context.Tickets
+    .Where(e => e.EventId == eventId) 
+    .Select(e => e.TicketPrice)
+    .FirstOrDefault();
+            if (ticketPrice != null)
+            {
+                ViewData["TicketPrice"] = ticketPrice;
+            }
+
             var selectedEvent = ViewData["Events"] as EventEase_01.Models.Event;
             if (selectedEvent != null)
             {

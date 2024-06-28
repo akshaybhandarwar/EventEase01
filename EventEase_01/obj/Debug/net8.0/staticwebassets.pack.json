@@ -317,6 +317,10 @@
       "PackagePath": "staticwebassets\\images\\download.jpg"
     },
     {
+      "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\favicon.ico",
+      "PackagePath": "staticwebassets\\images\\favicon.ico"
+    },
+    {
       "Id": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\landingPageBg.png",
       "PackagePath": "staticwebassets\\images\\landingPageBg.png"
     },

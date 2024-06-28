@@ -9,8 +9,6 @@
             overflow: hidden;
             margin-bottom: 20px;
         }
-
-
         .event-header {
             position: relative;
             display: flex; 
@@ -18,8 +16,6 @@
             align-items: center; 
             height: 300px; 
         }
-
-
             .event-header h3 {
                 background-color: rgba(0, 0, 0, 0.6);
                 color: #fff;
@@ -88,14 +84,11 @@
 @{
     ViewData["Title"] = "EventDescription";
 }
-
-
 @if (ViewData["Events"] != null)
 {
     var eventDetails = ViewData["Events"] as EventEase_01.Models.Event;
     var venuename = ViewData["VenueName"] as string;
     var venueaddress = ViewData["VenueAddress"] as string;
-  
     @if (eventDetails != null)
     {
         <br />
@@ -116,13 +109,16 @@
                     </div>
                     <div>
                         <span class="detail-label">Venue:</span>
-                        <span class="detail-value">@venuename</span>
+                        <span class="detail-value">@venuename - (@venueaddress)</span>
                     </div>
-                    <div>
-                        <span class="detail-label">Venue Address:</span>
-                        <span class="detail-value">@venueaddress</span>
-                    </div>
-      
+
+                    @if (ViewData["TicketPrice"] != null)
+                    {
+                        <div>
+                            <span class="detail-label">Ticket Price:</span>
+                            <span class="detail-value">@ViewData["TicketPrice"]</span>
+                        </div>
+                    }
                     @if (ViewData["CountOfTickets"] != null)
                     {
                         var countOfTickets = ViewData["CountOfTickets"] as int?;
@@ -136,5 +132,4 @@
             </div>
         </div>
     }
-
 }

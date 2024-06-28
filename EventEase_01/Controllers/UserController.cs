@@ -297,8 +297,6 @@ namespace EventEase_01.Controllers
                 if (result)
                 {
                     TempData["SuccessMessage"] = "Registration successful! Please log in.";
-                   
-
                     return RedirectToAction("Login");
                 }
                 else
@@ -312,13 +310,12 @@ namespace EventEase_01.Controllers
         [NoCache]
         public async Task<IActionResult> Dashboard([FromServices] IDistributedCache cache)
         {
-            
             if (!User.Identity.IsAuthenticated)
             {
               
                 return RedirectToAction("Login", "User");
             }
-          
+       
             var cachedData = await cache.GetStringAsync("DashboardData");
             if (cachedData != null)
             {
@@ -398,6 +395,7 @@ namespace EventEase_01.Controllers
             }
             return View();
         }
+
         public async Task<ActionResult> UpdateSeatStatus(List<Guid> ticketIds)
         {
             int count = ticketIds.Count;

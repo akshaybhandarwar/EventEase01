@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TNmrZj2D6ept2pzU3gSz+hKidrgKw39WWbhejWwFivs=",
+  "Hash": "A/K3iT5CxCaJGIQr/xasrI7KK6wsih/8GgllUEaAmTk=",
   "Source": "EventEase_01",
   "BasePath": "_content/EventEase_01",
   "Mode": "Default",
@@ -1516,6 +1516,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Event5.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\favicon.ico",
+      "SourceId": "EventEase_01",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\",
+      "BasePath": "_content/EventEase_01",
+      "RelativePath": "images/favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\favicon.ico"
     },
     {
       "Identity": "C:\\Users\\Coditas-Admin\\source\\repos\\EventEase_01\\EventEase_01\\wwwroot\\images\\landingPageBg.png",
